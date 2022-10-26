@@ -14,7 +14,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 </schema>
 
-<table name="ec">
+<table name="estado_civil">
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
@@ -25,26 +25,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="estado_civil">
 		<type name="varchar" length="20"/>
 	</column>
-	<constraint name="id_ec_pk" type="pk-constr" factor="10" table="muint.ec">
+	<constraint name="id_ec_pk" type="pk-constr" factor="10" table="muint.estado_civil">
 		<tablespace name="pg_default"/>
 		<columns names="id_ec" ref-type="src-columns"/>
-	</constraint>
-</table>
-
-<table name="genero">
-	<schema name="muint"/>
-	<role name="postgres"/>
-	<tablespace name="pg_default"/>
-	<position x="26" y="137"/>
-	<column name="id_gen">
-		<type name="smallint"/>
-	</column>
-	<column name="genero">
-		<type name="varchar" length="10"/>
-	</column>
-	<constraint name="id_gen_pk" type="pk-constr" factor="10" table="muint.genero">
-		<tablespace name="pg_default"/>
-		<columns names="id_gen" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -52,11 +35,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="27" y="220"/>
-	<column name="id_escolaridad">
+	<position x="27" y="221"/>
+	<column name="id_escolaridad" not-null="true">
 		<type name="smallint"/>
 	</column>
-	<column name="escolaridad">
+	<column name="escolaridad" not-null="true">
 		<type name="varchar" length="15"/>
 	</column>
 	<constraint name="id_escolaridad_pk" type="pk-constr" factor="10" table="muint.escolaridad">
@@ -85,11 +68,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="28" y="391"/>
-	<column name="id_unidad">
+	<position x="30" y="500"/>
+	<column name="id_unidad" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="unidad">
+	<column name="unidad" not-null="true">
 		<type name="varchar" length="100"/>
 	</column>
 </table>
@@ -98,7 +81,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="30" y="472"/>
+	<position x="697" y="597"/>
 	<column name="id_sector">
 		<type name="smallint"/>
 	</column>
@@ -115,7 +98,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="539" y="68"/>
+	<position x="557" y="45"/>
 	<column name="id_persona">
 		<type name="integer"/>
 	</column>
@@ -137,50 +120,192 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="ocupacion">
 		<type name="varchar" length="50"/>
 	</column>
+	<column name="genero">
+		<type name="char"/>
+		<comment><![CDATA[Masculino (M), Femenino (F)]]></comment>
+	</column>
+	<column name="cp">
+		<type name="integer"/>
+	</column>
+	<column name="numero_ext">
+		<type name="integer"/>
+	</column>
+	<column name="numero_int">
+		<type name="integer"/>
+	</column>
 	<constraint name="id_persona_pk" type="pk-constr" factor="10" table="muint.persona">
 		<tablespace name="pg_default"/>
 		<columns names="id_persona" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<constraint name="id_gen_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="muint.genero" table="muint.persona">
-	<columns names="id_persona" ref-type="src-columns"/>
-	<columns names="id_gen" ref-type="dst-columns"/>
-</constraint>
-<constraint name="id_escolaridad_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="muint.escolaridad" table="muint.persona">
-	<columns names="id_persona" ref-type="src-columns"/>
-	<columns names="id_escolaridad" ref-type="dst-columns"/>
-</constraint>
-<constraint name="id_adicciones_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="muint.adicciones" table="muint.persona">
-	<columns names="id_persona" ref-type="src-columns"/>
-	<columns names="id_adicciones" ref-type="dst-columns"/>
-</constraint>
-<constraint name="id_ec_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="muint.ec" table="muint.persona">
-	<columns names="id_persona" ref-type="src-columns"/>
-	<columns names="id_ec" ref-type="dst-columns"/>
-</constraint>
-<relationship name="rel_persona_genero" type="relfk"
-	 src-table="muint.persona"
-	 dst-table="muint.genero"
-	 src-required="true" dst-required="true"/>
+<table name="estados">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="446" y="596"/>
+	<column name="id_estado">
+		<type name="integer"/>
+	</column>
+	<column name="estado" not-null="true">
+		<type name="varchar" length="60"/>
+	</column>
+	<constraint name="id_estado_pk" type="pk-constr" factor="10" table="muint.estados">
+		<tablespace name="pg_default"/>
+		<columns names="id_estado" ref-type="src-columns"/>
+	</constraint>
+</table>
 
-<relationship name="rel_persona_escolaridad" type="relfk"
-	 src-table="muint.persona"
-	 dst-table="muint.escolaridad"
-	 src-required="true" dst-required="true"/>
+<table name="nacionalidad">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="29" y="389"/>
+	<column name="id_nacionalidad">
+		<type name="integer"/>
+	</column>
+	<column name="nacionalidad">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="id_nacionalidad_pk" type="pk-constr" factor="10" table="muint.nacionalidad">
+		<tablespace name="pg_default"/>
+		<columns names="id_nacionalidad" ref-type="src-columns"/>
+	</constraint>
+</table>
 
-<relationship name="rel_persona_adicciones" type="relfk"
-	 src-table="muint.persona"
-	 dst-table="muint.adicciones"
-	 src-required="true" dst-required="true"/>
+<table name="pref_sexual">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="33" y="137"/>
+	<column name="id_pref_sexual" not-null="true">
+		<type name="smallint"/>
+	</column>
+	<column name="pref_sexual">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="id_pref_sexual_pk" type="pk-constr" factor="10" table="muint.pref_sexual">
+		<tablespace name="pg_default"/>
+		<columns names="id_pref_sexual" ref-type="src-columns"/>
+	</constraint>
+</table>
 
-<relationship name="rel_persona_ec" type="relfk"
-	 src-table="muint.persona"
-	 dst-table="muint.ec"
-	 src-required="true" dst-required="true"/>
+<table name="municipios">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="436" y="408"/>
+	<column name="id_municipio" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[Identificador del municipio]]></comment>
+	</column>
+	<column name="municipio" not-null="true">
+		<type name="varchar"/>
+		<comment><![CDATA[Nombre del municipio]]></comment>
+	</column>
+	<constraint name="id_municipio_pk" type="pk-constr" factor="10" table="muint.municipios">
+		<tablespace name="pg_default"/>
+		<columns names="id_municipio" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="estados_has_many_municipios" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="0" constr-indexes="1"
+	 src-table="muint.estados"
+	 dst-table="muint.municipios"
+	 src-required="true" dst-required="false"	 identifier="true"
+/>
+
+<relationship name="estado_civil_has_many_persona" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="11" constr-indexes="1"
+	 src-table="muint.estado_civil"
+	 dst-table="muint.persona"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="pref_sexual_has_many_persona" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="12" constr-indexes="2"
+	 src-table="muint.pref_sexual"
+	 dst-table="muint.persona"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="escolaridad_has_many_persona" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="13" constr-indexes="3"
+	 src-table="muint.escolaridad"
+	 dst-table="muint.persona"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="adicciones_has_many_persona" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="14" constr-indexes="4"
+	 src-table="muint.adicciones"
+	 dst-table="muint.persona"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="nacionalidad_has_many_persona" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="15" constr-indexes="5"
+	 src-table="muint.nacionalidad"
+	 dst-table="muint.persona"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="municipios_has_many_persona" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="16,17" constr-indexes="6"
+	 src-table="muint.municipios"
+	 dst-table="muint.persona"
+	 src-required="false" dst-required="false"/>
+
+<table name="calles">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="697" y="404"/>
+	<column name="id_calle">
+		<type name="integer"/>
+	</column>
+	<column name="calle">
+		<type name="varchar" length="150"/>
+	</column>
+	<constraint name="id_calle_pk" type="pk-constr" factor="10" table="muint.calles">
+		<tablespace name="pg_default"/>
+		<columns names="id_calle" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="sector_has_many_calles" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="0" constr-indexes="1"
+	 src-table="muint.sector"
+	 dst-table="muint.calles"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="calles_has_many_persona" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="18" constr-indexes="7"
+	 src-table="muint.calles"
+	 dst-table="muint.persona"
+	 src-required="false" dst-required="false"/>
 
 </dbmodel>
