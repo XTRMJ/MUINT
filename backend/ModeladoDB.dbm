@@ -22,7 +22,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="id_ec">
 		<type name="smallint"/>
 	</column>
-	<column name="estado_civil">
+	<column name="estado_civil" not-null="true">
 		<type name="varchar" length="20"/>
 	</column>
 	<constraint name="id_ec_pk" type="pk-constr" factor="10" table="muint.estado_civil">
@@ -68,7 +68,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="711.111" y="554.444"/>
+	<position x="724.861" y="554.444"/>
 	<column name="id_unidad" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -89,7 +89,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="id_sector">
 		<type name="smallint"/>
 	</column>
-	<column name="sector">
+	<column name="sector" not-null="true">
 		<type name="varchar" length="20"/>
 	</column>
 	<constraint name="id_sector_pk" type="pk-constr" factor="10" table="muint.sector">
@@ -106,7 +106,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="id_persona">
 		<type name="integer"/>
 	</column>
-	<column name="nombre">
+	<column name="nombre" not-null="true">
 		<type name="varchar" length="30"/>
 	</column>
 	<column name="ap">
@@ -115,7 +115,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="am">
 		<type name="varchar" length="20"/>
 	</column>
-	<column name="fec_nac">
+	<column name="fec_nac" not-null="true">
 		<type name="date"/>
 	</column>
 	<column name="peso">
@@ -124,14 +124,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="ocupacion">
 		<type name="varchar" length="50"/>
 	</column>
-	<column name="genero">
+	<column name="genero" not-null="true">
 		<type name="char"/>
 		<comment><![CDATA[Masculino (M), Femenino (F)]]></comment>
 	</column>
-	<column name="cp">
+	<column name="cp" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="numero_ext">
+	<column name="numero_ext" not-null="true">
 		<type name="integer"/>
 	</column>
 	<column name="numero_int">
@@ -147,7 +147,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="286" y="548.222"/>
+	<position x="268.5" y="546.972"/>
 	<column name="id_estado">
 		<type name="integer"/>
 	</column>
@@ -164,11 +164,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="29" y="389"/>
+	<position x="7.75" y="387.75"/>
 	<column name="id_nacionalidad">
 		<type name="integer"/>
 	</column>
-	<column name="nacionalidad">
+	<column name="nacionalidad" not-null="true">
 		<type name="varchar" length="30"/>
 	</column>
 	<constraint name="id_nacionalidad_pk" type="pk-constr" factor="10" table="muint.nacionalidad">
@@ -185,7 +185,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="id_pref_sexual" not-null="true">
 		<type name="smallint"/>
 	</column>
-	<column name="pref_sexual">
+	<column name="pref_sexual" not-null="true">
 		<type name="varchar" length="20"/>
 	</column>
 	<constraint name="id_pref_sexual_pk" type="pk-constr" factor="10" table="muint.pref_sexual">
@@ -199,13 +199,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
 	<position x="279.333" y="390.222"/>
-	<column name="municipio" not-null="true">
-		<type name="varchar"/>
-		<comment><![CDATA[Nombre del municipio]]></comment>
-	</column>
 	<column name="id_municipio" not-null="true">
 		<type name="integer"/>
 		<comment><![CDATA[Identificador del municipio]]></comment>
+	</column>
+	<column name="municipio" not-null="true">
+		<type name="varchar"/>
+		<comment><![CDATA[Nombre del municipio]]></comment>
 	</column>
 	<constraint name="id_municipio_pk" type="pk-constr" factor="10" table="muint.municipios">
 		<tablespace name="pg_default"/>
@@ -282,11 +282,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
 	<position x="503.667" y="391.778"/>
-	<column name="calle">
-		<type name="varchar" length="150"/>
-	</column>
 	<column name="id_calle">
 		<type name="integer"/>
+	</column>
+	<column name="calle">
+		<type name="varchar" length="150"/>
 	</column>
 	<constraint name="id_calle_pk" type="pk-constr" factor="10" table="muint.calles">
 		<tablespace name="pg_default"/>
@@ -326,7 +326,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="hora">
 		<type name="time"/>
 	</column>
-	<column name="motivo">
+	<column name="motivo" not-null="true">
 		<type name="varchar" length="100"/>
 	</column>
 	<constraint name="id_motivo_pk" type="pk-constr" factor="10" table="muint.motivo">
@@ -359,7 +359,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="696.667" y="135.556"/>
+	<position x="707.917" y="176.806"/>
 	<column name="observaciones">
 		<type name="varchar" length="500"/>
 	</column>
@@ -399,6 +399,61 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 col-indexes="2" constr-indexes="4,5"
 	 src-table="muint.geo"
 	 dst-table="muint.aprehension"
+	 src-required="false" dst-required="false"/>
+
+<table name="usuario">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="775" y="38.75"/>
+	<column name="id_usuario" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="user" not-null="true">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="password" not-null="true">
+		<type name="varchar" length="50"/>
+	</column>
+	<constraint name="id_usuarios_pk" type="pk-constr" factor="10" table="muint.usuario">
+		<tablespace name="pg_default"/>
+		<columns names="id_usuario" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="nivel">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="978.75" y="202.5"/>
+	<column name="id_nivel" not-null="true">
+		<type name="smallint"/>
+	</column>
+	<column name="nivel" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="id_nivel_pk" type="pk-constr" factor="10" table="muint.nivel">
+		<tablespace name="pg_default"/>
+		<columns names="id_nivel" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="usuario_has_one_nivel" type="rel11"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="1" constr-indexes="1,2"
+	 src-table="muint.nivel"
+	 dst-table="muint.usuario"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="persona_has_one_usuario" type="rel11"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="19" constr-indexes="8,9"
+	 src-table="muint.usuario"
+	 dst-table="muint.persona"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>
