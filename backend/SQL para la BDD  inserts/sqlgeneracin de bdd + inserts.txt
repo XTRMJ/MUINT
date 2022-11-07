@@ -1,0 +1,249 @@
+-- object: muint.estado_civil | type: TABLE --
+-- DROP TABLE muint.estado_civil;
+/*
+CREATE TABLE muint.estado_civil(
+	id_ec smallint,
+	estado_civil varchar(20) NOT NULL,
+	CONSTRAINT id_ec_pk PRIMARY KEY (id_ec)
+	WITH (FILLFACTOR = 10)
+	USING INDEX TABLESPACE pg_default
+
+)
+TABLESPACE pg_default;
+-- ddl-end --
+ALTER TABLE muint.estado_civil OWNER TO postgres;
+-- ddl-end --
+--------------------------------------------
+CREATE TABLE muint.pref_sexual(
+	id_pref_sexual smallint NOT NULL,
+	pref_sexual varchar(20) NOT NULL,
+	CONSTRAINT id_pref_sexual_pk PRIMARY KEY (id_pref_sexual)
+	WITH (FILLFACTOR = 10)
+	USING INDEX TABLESPACE pg_default
+
+)
+TABLESPACE pg_default;
+-- ddl-end --
+ALTER TABLE muint.pref_sexual OWNER TO postgres;
+-- ddl-end --
+---------------------------------------------------
+CREATE TABLE muint.escolaridad(
+	id_escolaridad smallint NOT NULL,
+	escolaridad varchar(15) NOT NULL,
+	CONSTRAINT id_escolaridad_pk PRIMARY KEY (id_escolaridad)
+
+)
+TABLESPACE pg_default;
+-- ddl-end --
+ALTER TABLE muint.escolaridad OWNER TO postgres;
+-- ddl-end --
+--------------------------------------------------------
+CREATE TABLE muint.adicciones(
+	id_adicciones smallint,
+	adicciones varchar(100),
+	CONSTRAINT id_adicciones_pk PRIMARY KEY (id_adicciones)
+	WITH (FILLFACTOR = 10)
+	USING INDEX TABLESPACE pg_default
+
+)
+TABLESPACE pg_default;
+-- ddl-end --
+ALTER TABLE muint.adicciones OWNER TO postgres;
+-- ddl-end --
+-------------------------------------------
+
+CREATE TABLE muint.nacionalidad(
+	id_nacionalidad integer,
+	nacionalidad varchar(30) NOT NULL,
+	CONSTRAINT id_nacionalidad_pk PRIMARY KEY (id_nacionalidad)
+	WITH (FILLFACTOR = 10)
+	USING INDEX TABLESPACE pg_default
+
+)
+TABLESPACE pg_default;
+-- ddl-end --
+ALTER TABLE muint.nacionalidad OWNER TO postgres;
+-- ddl-end --
+
+--------------------------------------------------
+CREATE TABLE muint.estados(
+	id_estado integer,
+	estado varchar(60) NOT NULL,
+	CONSTRAINT id_estado_pk PRIMARY KEY (id_estado)
+	WITH (FILLFACTOR = 10)
+	USING INDEX TABLESPACE pg_default
+
+)
+TABLESPACE pg_default;
+-- ddl-end --
+ALTER TABLE muint.estados OWNER TO postgres;
+-- ddl-end --
+
+----------------------------------------------------
+CREATE TABLE muint.municipios(
+	id_estado integer,
+	municipio varchar NOT NULL,
+	id_municipio integer NOT NULL,
+	CONSTRAINT id_municipio_pk PRIMARY KEY (id_municipio,id_estado)
+	WITH (FILLFACTOR = 10)
+	USING INDEX TABLESPACE pg_default
+
+)
+TABLESPACE pg_default;
+-- ddl-end --
+COMMENT ON COLUMN muint.municipios.municipio IS 'Nombre del municipio';
+COMMENT ON COLUMN muint.municipios.id_municipio IS 'Identificador del municipio';
+ALTER TABLE muint.municipios OWNER TO postgres;
+-- ddl-end --
+
+-----------------------------------------
+CREATE TABLE muint.sector(
+	id_sector smallint,
+	sector varchar(20) NOT NULL,
+	CONSTRAINT id_sector_pk PRIMARY KEY (id_sector)
+	WITH (FILLFACTOR = 10)
+	USING INDEX TABLESPACE pg_default
+
+)
+TABLESPACE pg_default;
+-- ddl-end --
+ALTER TABLE muint.sector OWNER TO postgres;
+-- ddl-end --
+
+------------------------------------------
+CREATE TABLE muint.calles(
+	id_sector smallint,
+	calle varchar(150),
+	id_calle integer,
+	CONSTRAINT id_calle_pk PRIMARY KEY (id_calle)
+	WITH (FILLFACTOR = 10)
+	USING INDEX TABLESPACE pg_default
+
+)
+TABLESPACE pg_default;
+-- ddl-end --
+ALTER TABLE muint.calles OWNER TO postgres;
+-- ddl-end --
+
+-------------------------------------------------
+CREATE TABLE muint.unidad(
+	id_unidad integer NOT NULL,
+	unidad varchar(100) NOT NULL,
+	CONSTRAINT id_unidad_pk PRIMARY KEY (id_unidad)
+	WITH (FILLFACTOR = 10)
+	USING INDEX TABLESPACE pg_default
+
+)
+TABLESPACE pg_default;
+-- ddl-end --
+ALTER TABLE muint.unidad OWNER TO postgres;
+-- ddl-end --
+
+-----------------------------------------------
+CREATE TABLE muint.motivo(
+	id_motivo integer,
+	id_unidad integer,
+	hora time,
+	motivo varchar(100) NOT NULL,
+	fecha date,
+	CONSTRAINT id_motivo_pk PRIMARY KEY (id_motivo)
+	WITH (FILLFACTOR = 10)
+	USING INDEX TABLESPACE pg_default
+
+)
+TABLESPACE pg_default;
+-- ddl-end --
+ALTER TABLE muint.motivo OWNER TO postgres;
+-- ddl-end --
+
+----------------------------------------------
+CREATE TABLE muint.geo(
+	id_geo integer NOT NULL,
+	longitud double precision NOT NULL,
+	latitud double precision NOT NULL,
+	CONSTRAINT id_geo_pk PRIMARY KEY (id_geo)
+	WITH (FILLFACTOR = 10)
+	USING INDEX TABLESPACE pg_default
+
+)
+TABLESPACE pg_default;
+-- ddl-end --
+ALTER TABLE muint.geo OWNER TO postgres;
+-- ddl-end --
+
+-----------------------------------------------
+CREATE TABLE muint.aprehension(
+	id_persona integer,
+	id_motivo integer,
+	id_geo integer,
+	observaciones varchar(500)
+)
+TABLESPACE pg_default;
+-- ddl-end --
+ALTER TABLE muint.aprehension OWNER TO postgres;
+-- ddl-end --
+
+-----------------------------------------------
+CREATE TABLE muint.nivel(
+	id_nivel smallint NOT NULL,
+	nivel varchar(20) NOT NULL,
+	CONSTRAINT id_nivel_pk PRIMARY KEY (id_nivel)
+	WITH (FILLFACTOR = 10)
+	USING INDEX TABLESPACE pg_default
+
+)
+TABLESPACE pg_default;
+-- ddl-end --
+ALTER TABLE muint.nivel OWNER TO postgres;
+-- ddl-end --
+
+------------------------------------------------
+CREATE TABLE muint.usuario(
+	id_usuario integer NOT NULL,
+	id_nivel smallint,
+	contraseña varchar(50) NOT NULL,--secambio porque era una palabra especial
+	usuario varchar(50) NOT NULL,--se cambio porque era una palabra especial
+	CONSTRAINT id_usuarios_pk PRIMARY KEY (id_usuario)
+	WITH (FILLFACTOR = 10)
+	USING INDEX TABLESPACE pg_default
+
+)
+TABLESPACE pg_default;
+-- ddl-end --
+ALTER TABLE muint.usuario OWNER TO postgres;
+-- ddl-end --
+
+--------------------------------------------------
+CREATE TABLE muint.persona(
+	id_persona integer,
+	nombre varchar(30) NOT NULL,
+	ap varchar(20),
+	am varchar(20),
+	fec_nac date NOT NULL,
+	peso float,
+	ocupacion varchar(50),
+	genero char NOT NULL,
+	cp integer NOT NULL,
+	numero_ext integer NOT NULL,
+	numero_int integer,
+	id_ec smallint,
+	id_pref_sexual smallint,
+	id_escolaridad smallint,
+	id_adicciones smallint,
+	id_nacionalidad integer,
+	id_municipio integer,
+	id_estado integer,
+	id_calle integer,
+	id_usuario integer,
+	CONSTRAINT id_persona_pk PRIMARY KEY (id_persona)
+	WITH (FILLFACTOR = 10)
+	USING INDEX TABLESPACE pg_default
+
+)
+TABLESPACE pg_default;
+-- ddl-end --
+COMMENT ON COLUMN muint.persona.genero IS 'Masculino (M), Femenino (F)';
+COMMENT ON COLUMN muint.persona.id_municipio IS 'Identificador del municipio';
+ALTER TABLE muint.persona OWNER TO postgres;
+-- ddl-end --
+*/
