@@ -4,16 +4,17 @@
         <script type="text/javascript">
             google.charts.load('current', {'packages':['corechart', 'controls']});
             // Set a callback to run when the Google Visualization API is loaded.
-            google.charts.setOnLoadCallback(drawDashboard);
+            google.charts.setOnLoadCallback(buildChart);
             // Some raw data (not necessarily accurate)
-            function drawDashboard(){
+            function buildChart(){
+                // Some raw data (not necessarily accurate)
                 var rowData1 = [['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua  Guinea',
-                            'Rwanda', 'Average'],
-                            ['2004/05', 165, 938, 522, 998, 450, 114.6],
-                            ['2005/06', 135, 1120, 599, 1268, 288, 382],
-                            ['2006/07', 157, 1167, 587, 807, 397, 623],
-                            ['2007/08', 139, 1110, 615, 968, 215, 409.4],
-                            ['2008/09', 136, 691, 629, 1026, 366, 569.6]];
+                                'Rwanda', 'Average'],
+                                ['2004/05', 165, 938, 522, 998, 450, 114.6],
+                                ['2005/06', 135, 1120, 599, 1268, 288, 382],
+                                ['2006/07', 157, 1167, 587, 807, 397, 623],
+                                ['2007/08', 139, 1110, 615, 968, 215, 409.4],
+                                ['2008/09', 136, 691, 629, 1026, 366, 569.6]];
                 var rowData2 = [['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua  Guinea',
                                 'Rwanda', 'Average'],
                                 ['2004/05', 122, 638, 722, 998, 450, 614.6],
@@ -21,7 +22,6 @@
                                 ['2006/07', 183, 167, 487, 207, 397, 623],
                                 ['2007/08', 200, 510, 315, 1068, 215, 609.4],
                                 ['2008/09', 123, 491, 829, 826, 366, 569.6]];
-
 
                 // Create and populate the data tables.
                 var data = [];
@@ -44,26 +44,32 @@
                 // Create and draw the visualization.
                 var chart = new google.visualization.ComboChart(document.getElementById('visualization'));
                 var button = document.getElementById('b1');
-            }
-            
-            function drawChart() {
-            // Disabling the button while the chart is drawing.
-            button.disabled = true;
-            google.visualization.events.addListener(chart, 'ready',
-                function() {
-                    button.disabled = false;
-                    button.value = 'Cambiar a ' + (current ? 'Sector 1' : 'Sector 2');
-                });
-            options['title'] = 'Monthly ' + (current ? 'Coffee' : 'Tea') + ' Production by Country';
+                function drawChart() {
+                // Disabling the button while the chart is drawing.
+                button.disabled = true;
+                google.visualization.events.addListener(chart, 'ready',
+                    function() {
+                        button.disabled = false;
+                        button.value = 'Switch to ' + (current ? 'Tea' : 'Coffee');
+                    });
+                options['title'] = 'Monthly ' + (current ? 'Coffee' : 'Tea') + ' Production by Country';
 
-            chart.draw(data[current], options);
-            }
-            drawChart();
-
-            button.onclick = function() {
-            current = 1 - current;
+                chart.draw(data[current], options);
+                }
                 drawChart();
+
+                button.onclick = function() {
+                current = 1 - current;
+                drawChart();
+                }
             }
+
         </script>
     </head>
+    <body>
+        <input type="button" value="Boton cambiador" id="b1" >
+        <div id="visualization" style="width:500; height:500"> 
+        </div>
+    </body>
+        
 </html>
