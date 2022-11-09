@@ -22,11 +22,34 @@
                                 ['2006/07', 183, 167, 487, 207, 397, 623],
                                 ['2007/08', 200, 510, 315, 1068, 215, 609.4],
                                 ['2008/09', 123, 491, 829, 826, 366, 569.6]];
-
+                var rowData3 = [['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua  Guinea',
+                                'Rwanda', 'Average'],
+                                ['2004/05', 122, 638, 722, 998, 450, 614.6],
+                                ['2005/06', 100, 1120, 899, 1268, 288, 682],
+                                ['2006/07', 183, 167, 487, 207, 397, 623],
+                                ['2007/08', 200, 510, 315, 1068, 215, 609.4],
+                                ['2008/09', 123, 491, 829, 826, 366, 569.6]];
+                var rowData4 = [['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua  Guinea',
+                                'Rwanda', 'Average'],
+                                ['2004/05', 122, 638, 722, 998, 450, 614.6],
+                                ['2005/06', 100, 1120, 899, 1268, 288, 682],
+                                ['2006/07', 183, 167, 487, 207, 397, 623],
+                                ['2007/08', 200, 510, 315, 1068, 215, 609.4],
+                                ['2008/09', 123, 491, 829, 826, 366, 569.6]];
+                var rowData5 = [['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua  Guinea',
+                                'Rwanda', 'Average'],
+                                ['2004/05', 122, 638, 722, 998, 450, 614.6],
+                                ['2005/06', 100, 1120, 899, 1268, 288, 682],
+                                ['2006/07', 183, 167, 487, 207, 397, 623],
+                                ['2007/08', 200, 510, 315, 1068, 215, 609.4],
+                                ['2008/09', 123, 491, 829, 826, 366, 569.6]];
                 // Create and populate the data tables.
                 var data = [];
                 data[0] = google.visualization.arrayToDataTable(rowData1);
                 data[1] = google.visualization.arrayToDataTable(rowData2);
+                data[2] = google.visualization.arrayToDataTable(rowData3);
+                data[3] = google.visualization.arrayToDataTable(rowData4);
+                data[4] = google.visualization.arrayToDataTable(rowData5);
 
                 var options = {
                     width: 400,
@@ -63,7 +86,23 @@
                 drawChart();
 
                 button1.onclick = function() {
-                    current = 1 - current;
+                    current = 0;
+                    drawChart();
+                }
+                button2.onclick = function() {
+                    current = 1;
+                    drawChart();
+                }
+                button3.onclick = function() {
+                    current = 2;
+                    drawChart();
+                }
+                button4.onclick = function() {
+                    current = 3;
+                    drawChart();
+                }
+                button5.onclick = function() {
+                    current = 4;
                     drawChart();
                 }
             }
