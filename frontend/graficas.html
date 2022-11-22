@@ -98,6 +98,26 @@
                 }
                 drawChart();
 
+                var previewOptions = {
+                    width: 250,
+                    height: 150,
+                    seriesType: "bars",
+                    series: {4: {type: "line"}},
+                };
+                var chartN = new google.visualization.ComboChart(document.getElementById('sectorN'));
+                var chartS = new google.visualization.ComboChart(document.getElementById('sectorS'));
+                var chartC = new google.visualization.ComboChart(document.getElementById('sectorC'));
+                var chartO = new google.visualization.ComboChart(document.getElementById('sectorO'));
+                var chartP = new google.visualization.ComboChart(document.getElementById('sectorP'));
+                function drawPreview() {
+                    // Disabling the button while the chart is drawing.
+                    chartN.draw(data[0], previewOptions);
+                    chartS.draw(data[1], previewOptions);
+                    chartC.draw(data[2], previewOptions);
+                    chartO.draw(data[3], previewOptions);
+                    chartP.draw(data[4], previewOptions);
+                }
+                drawPreview();
                 button1.onclick = function() {
                     current = 0;
                     drawChart();
@@ -123,12 +143,31 @@
         </script>
     </head>
     <body>
-        <input type="button" value="Sector Norte" id="b1" >
-        <input type="button" value="Sector Sur" id="b2" >
-        <input type="button" value="Sector Centro" id="b3" >
-        <input type="button" value="Sector Oriente" id="b4" >
-        <input type="button" value="Sector Poniente" id="b5" >
-        <div id="visualization" style="width: 915px;; height:500px"> 
+        <div>
+
+            <div>
+                <div id="sectorN" style="width: 300px; height:200px"></div>
+                    <input type="button" value="Sector Norte" id="b1" >
+            </div>
+            <div>
+                <div id="sectorS" style="width: 300px; height:200px"></div>
+                <input type="button" value="Sector Sur" id="b2" >
+            </div>
+            <div>
+                <div id="sectorC" style="width: 300px; height:200px"></div>
+                <input type="button" value="Sector Centro" id="b3" >
+            </div>
+            <div>
+                <div id="sectorO" style="width: 300px; height:200px"></div>
+                <input type="button" value="Sector Oriente" id="b4" >
+            </div>
+            <div>
+                <div id="sectorP" style="width: 300px; height:200px"></div>
+                <input type="button" value="Sector Poniente" id="b5" >
+            </div>
+        </div>
+        <div id="visualization" style="width: 915px; height:500px">
+            Entrada de datos
         </div>
         <div id="control_div" style='width: 915px; height: 50px;'></div>
     </body>
