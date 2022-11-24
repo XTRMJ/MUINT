@@ -68,7 +68,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="724.861" y="554.444"/>
+	<position x="1356.29" y="64.4439"/>
 	<column name="id_unidad" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -85,7 +85,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="499.222" y="551.444"/>
+	<position x="456.365" y="37.1582"/>
 	<column name="id_sector">
 		<type name="smallint"/>
 	</column>
@@ -98,48 +98,17 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="persona">
+<table name="informacion">
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="371.444" y="25"/>
-	<column name="id_persona">
+	<position x="477.158" y="476.429"/>
+	<column name="id_informacion" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="nombre" not-null="true">
-		<type name="varchar" length="30"/>
-	</column>
-	<column name="ap">
-		<type name="varchar" length="20"/>
-	</column>
-	<column name="am">
-		<type name="varchar" length="20"/>
-	</column>
-	<column name="fec_nac" not-null="true">
-		<type name="date"/>
-	</column>
-	<column name="peso">
-		<type name="float"/>
-	</column>
-	<column name="ocupacion">
-		<type name="varchar" length="50"/>
-	</column>
-	<column name="genero" not-null="true">
-		<type name="char"/>
-		<comment><![CDATA[Masculino (M), Femenino (F)]]></comment>
-	</column>
-	<column name="cp" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="numero_ext" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="numero_int">
-		<type name="integer"/>
-	</column>
-	<constraint name="id_persona_pk" type="pk-constr" factor="10" table="muint.persona">
+	<constraint name="id_persona_pk" type="pk-constr" factor="10" table="muint.informacion">
 		<tablespace name="pg_default"/>
-		<columns names="id_persona" ref-type="src-columns"/>
+		<columns names="id_informacion" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -147,7 +116,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="268.5" y="546.972"/>
+	<position x="318.5" y="129.829"/>
 	<column name="id_estado">
 		<type name="integer"/>
 	</column>
@@ -198,7 +167,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="279.333" y="390.222"/>
+	<position x="353.619" y="284.508"/>
 	<column name="id_municipio" not-null="true">
 		<type name="integer"/>
 		<comment><![CDATA[Identificador del municipio]]></comment>
@@ -227,61 +196,61 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="11" constr-indexes="1"
+	 col-indexes="2" constr-indexes="1"
 	 src-table="muint.estado_civil"
-	 dst-table="muint.persona"
+	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="pref_sexual_has_many_persona" type="rel1n"
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="12" constr-indexes="2"
+	 col-indexes="3" constr-indexes="2"
 	 src-table="muint.pref_sexual"
-	 dst-table="muint.persona"
+	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="escolaridad_has_many_persona" type="rel1n"
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="13" constr-indexes="3"
+	 col-indexes="4" constr-indexes="3"
 	 src-table="muint.escolaridad"
-	 dst-table="muint.persona"
+	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="adicciones_has_many_persona" type="rel1n"
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="14" constr-indexes="4"
+	 col-indexes="5" constr-indexes="4"
 	 src-table="muint.adicciones"
-	 dst-table="muint.persona"
+	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="nacionalidad_has_many_persona" type="rel1n"
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="15" constr-indexes="5"
+	 col-indexes="6" constr-indexes="5"
 	 src-table="muint.nacionalidad"
-	 dst-table="muint.persona"
+	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="municipios_has_many_persona" type="rel1n"
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="16,17" constr-indexes="6"
+	 col-indexes="7,8" constr-indexes="6"
 	 src-table="muint.municipios"
-	 dst-table="muint.persona"
+	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
 
 <table name="calles">
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="503.667" y="391.778"/>
+	<position x="492.238" y="197.492"/>
 	<column name="id_calle">
 		<type name="integer"/>
 	</column>
@@ -307,16 +276,20 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="18" constr-indexes="7"
+	 col-indexes="9" constr-indexes="7"
 	 src-table="muint.calles"
-	 dst-table="muint.persona"
-	 src-required="false" dst-required="false"/>
+	 dst-table="muint.informacion"
+	 src-required="false" dst-required="false">
+	<label ref-type="dst-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
 
 <table name="motivo">
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="715.556" y="390"/>
+	<position x="1124.13" y="170"/>
 	<column name="id_motivo">
 		<type name="integer"/>
 	</column>
@@ -339,7 +312,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="858.889" y="286.667"/>
+	<position x="820.318" y="178.096"/>
 	<column name="id_geo" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -359,7 +332,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="707.917" y="176.806"/>
+	<position x="840.774" y="316.806"/>
 	<column name="observaciones">
 		<type name="varchar" length="500"/>
 	</column>
@@ -379,7 +352,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
 	 col-indexes="0" constr-indexes="2,3"
-	 src-table="muint.persona"
+	 src-table="muint.informacion"
 	 dst-table="muint.aprehension"
 	 src-required="false" dst-required="false"/>
 
@@ -405,7 +378,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="775" y="38.75"/>
+	<position x="703.572" y="30.1786"/>
 	<column name="id_usuario" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -425,7 +398,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="978.75" y="202.5"/>
+	<position x="1098.75" y="59.6428"/>
 	<column name="id_nivel" not-null="true">
 		<type name="smallint"/>
 	</column>
@@ -451,9 +424,461 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="19" constr-indexes="8,9"
+	 col-indexes="10" constr-indexes="8,9"
 	 src-table="muint.usuario"
-	 dst-table="muint.persona"
+	 dst-table="muint.informacion"
+	 src-required="false" dst-required="false"/>
+
+<table name="colores">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="910.86" y="751.428"/>
+	<column name="id_color" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="color" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="id_color" type="pk-constr" factor="10" table="muint.colores">
+		<tablespace name="pg_default"/>
+		<columns names="id_color" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="vehiculo">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="472.759" y="709.047"/>
+	<column name="id_vehiculo" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="serie">
+		<type name="char" length="17"/>
+	</column>
+	<column name="placas">
+		<type name="varchar" length="10"/>
+	</column>
+	<constraint name="id_vehiculo_pk" type="pk-constr" factor="10" table="muint.vehiculo">
+		<tablespace name="pg_default"/>
+		<columns names="id_vehiculo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="motor">
+	<schema name="public"/>
+	<position x="844.034" y="853.81"/>
+	<column name="id_motor" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="motor" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="id_motor_pk" type="pk-constr" factor="10" table="public.motor">
+		<tablespace name="pg_default"/>
+		<columns names="id_motor" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="modelos_motores">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="1115.3" y="976.986"/>
+	<column name="id_modelos_motores" not-null="true">
+		<type name="smallint"/>
+	</column>
+	<column name="modelos_motores" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="id_modelos_motores_pk" type="pk-constr" factor="10" table="muint.modelos_motores">
+		<tablespace name="pg_default"/>
+		<columns names="id_modelos_motores" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="modelos_motores_has_many_motor" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2" constr-indexes="0"
+	 src-table="muint.modelos_motores"
+	 dst-table="public.motor"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="motor_has_many_vehiculo" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="3" constr-indexes="1"
+	 src-table="public.motor"
+	 dst-table="muint.vehiculo"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="vehiculo_has_many_colores" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2" constr-indexes="1"
+	 src-table="muint.vehiculo"
+	 dst-table="muint.colores"
+	 src-required="false" dst-required="false"/>
+
+<table name="tipo_vehiculo">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="781.967" y="985.715"/>
+	<column name="id_tipo_vehiculo" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="tipo_vehiculo" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="id_tipo_vehiculo_pk" type="pk-constr" factor="10" table="muint.tipo_vehiculo">
+		<tablespace name="pg_default"/>
+		<columns names="id_tipo_vehiculo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="marca_vehiculo">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="460.066" y="906.985"/>
+	<column name="id_marca_vehiculo" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="marca_vehiculo" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="id_marca_vehiculo_pk" type="pk-constr" factor="10" table="muint.marca_vehiculo">
+		<tablespace name="pg_default"/>
+		<columns names="id_marca_vehiculo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sub_marca_vehiculo">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="455.78" y="1048.88"/>
+	<column name="id_sub_marca_vehiculo" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="sub_marca_vehiculo" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="id_sub_marca_vehiculo_pk" type="pk-constr" factor="10" table="muint.sub_marca_vehiculo">
+		<tablespace name="pg_default"/>
+		<columns names="id_sub_marca_vehiculo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="sub_marca_vehiculo_has_many_marca_vehiculo" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2" constr-indexes="1"
+	 src-table="muint.sub_marca_vehiculo"
+	 dst-table="muint.marca_vehiculo"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="marca_vehiculo_has_many_vehiculo" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="4" constr-indexes="2"
+	 src-table="muint.marca_vehiculo"
+	 dst-table="muint.vehiculo"
+	 src-required="false" dst-required="false"/>
+
+<table name="arma">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="19.4285" y="1083.71"/>
+	<column name="id_arma" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="tipo_arma">
+		<type name="bool"/>
+		<comment><![CDATA[1.-Corta / 2.-Larga / NULL - No posee arma]]></comment>
+	</column>
+	<constraint name="id_arma_pk" type="pk-constr" factor="10" table="muint.arma">
+		<tablespace name="pg_default"/>
+		<columns names="id_arma" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tatuajes">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="855.357" y="430.536"/>
+	<column name="id_tatuaje" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="tatuaje" not-null="true">
+		<type name="varchar" length="30"/>
+		<comment><![CDATA[Descripción del tatuaje]]></comment>
+	</column>
+	<constraint name="id_tatuaje_pk" type="pk-constr" factor="10" table="muint.tatuajes">
+		<tablespace name="pg_default"/>
+		<columns names="id_tatuaje" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="lado">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="1207.14" y="309.821"/>
+	<column name="id_lado" not-null="true">
+		<type name="smallint"/>
+	</column>
+	<column name="lado">
+		<type name="varchar" length="15"/>
+		<comment><![CDATA[izquierda, derecha, centro]]></comment>
+	</column>
+	<constraint name="id_lado_pk" type="pk-constr" factor="10" table="muint.lado">
+		<columns names="id_lado" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="cuerpo">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<comment><![CDATA[Catalogo de las partes del cuerpo ej. brazo, pierna, pecho, torso, etc]]></comment>
+	<position x="1233.93" y="444.822"/>
+	<column name="id_cuerpo" not-null="true">
+		<type name="smallint"/>
+	</column>
+	<column name="cuerpo" not-null="true">
+		<type name="varchar" length="10"/>
+		<comment><![CDATA[brazo, pierna, etc]]></comment>
+	</column>
+	<constraint name="id_cuerpo_pk" type="pk-constr" factor="10" table="muint.cuerpo">
+		<columns names="id_cuerpo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="tatuajes_has_one_cuerpo" type="rel11"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2" constr-indexes="1,2"
+	 src-table="muint.cuerpo"
+	 dst-table="muint.tatuajes"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="tatuajes_has_one_lado" type="rel11"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="3" constr-indexes="3,4"
+	 src-table="muint.lado"
+	 dst-table="muint.tatuajes"
+	 src-required="false" dst-required="false"/>
+
+<table name="oxxo">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="140" y="685.715"/>
+	<column name="id_oxxo" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="oxxo" not-null="true">
+		<type name="varchar" length="100"/>
+		<comment><![CDATA[nomre del oxxo]]></comment>
+	</column>
+	<column name="total_robos" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[cantidad de veces que fue asaltado el establecimiento]]></comment>
+	</column>
+	<column name="fecha">
+		<type name="timestamp"/>
+	</column>
+	<constraint name="id_oxxo_pk" type="pk-constr" factor="10" table="muint.oxxo">
+		<columns names="id_oxxo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="registro_detenciones">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<comment><![CDATA[propiedad del detenido]]></comment>
+	<position x="155.714" y="971.429"/>
+	<column name="id_registro" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="registro_propiedad" not-null="true">
+		<type name="varchar"/>
+	</column>
+	<constraint name="id_registro_pk" type="pk-constr" factor="10" table="muint.registro_detenciones">
+		<columns names="id_registro" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="discapacidades">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="24.2857" y="540"/>
+	<column name="id_discapacidades" not-null="true">
+		<type name="smallint"/>
+	</column>
+	<column name="discapacidad" not-null="true">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="id_discapacidad_pk" type="pk-constr" factor="10" table="muint.discapacidades">
+		<columns names="id_discapacidades" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="robo">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="57.1429" y="841.431"/>
+	<column name="id_robo" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="caracteristicas" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<constraint name="id_robo_pk" type="pk-constr" factor="10" table="muint.robo">
+		<columns names="id_robo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="persona_has_one_tatuajes" type="rel11"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="11" constr-indexes="10,11"
+	 src-table="muint.tatuajes"
+	 dst-table="muint.informacion"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="tipo_vehiculo_has_many_vehiculo" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="5" constr-indexes="3"
+	 src-table="muint.tipo_vehiculo"
+	 dst-table="muint.vehiculo"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="persona_has_many_discapacidades" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2" constr-indexes="1"
+	 src-table="muint.informacion"
+	 dst-table="muint.discapacidades"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="persona_has_many_oxxo" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="4" constr-indexes="1"
+	 src-table="muint.informacion"
+	 dst-table="muint.oxxo"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="oxxo_has_many_robo" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2" constr-indexes="1"
+	 src-table="muint.oxxo"
+	 dst-table="muint.robo"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="persona_has_many_vehiculo" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="6" constr-indexes="4"
+	 src-table="muint.informacion"
+	 dst-table="muint.vehiculo"
+	 src-required="false" dst-required="false"/>
+
+<table name="personas">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="862.857" y="535.714"/>
+	<column name="id_personas" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="nombre">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="ap">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="am">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="fec_nac">
+		<type name="date"/>
+	</column>
+	<column name="peso">
+		<type name="float"/>
+	</column>
+	<column name="ocupacion">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="genero">
+		<type name="char"/>
+	</column>
+	<column name="cp">
+		<type name="integer"/>
+	</column>
+	<column name="num_ext">
+		<type name="integer"/>
+	</column>
+	<column name="num_int">
+		<type name="integer"/>
+	</column>
+	<constraint name="id_personas_pk" type="pk-constr" factor="10" table="muint.personas">
+		<columns names="id_personas" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="personas_has_many_persona" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="1" constr-indexes="12"
+	 src-table="muint.personas"
+	 dst-table="muint.informacion"
+	 src-required="true" dst-required="false"	 identifier="true"
+/>
+
+<relationship name="arma_has_many_registro_detenciones" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2" constr-indexes="1"
+	 src-table="muint.arma"
+	 dst-table="muint.registro_detenciones"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="registro_detenciones_has_many_robo" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="3" constr-indexes="2"
+	 src-table="muint.registro_detenciones"
+	 dst-table="muint.robo"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>
