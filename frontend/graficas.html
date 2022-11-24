@@ -10,39 +10,39 @@
                 // Some raw data (not necessarily accurate)
                 var rowData1 = [['Hora', 'Robo/Casa', 'Robo/Civil', 'Robo/Vehiculo', 'Robo/Comercio',
                                 'Promedio'],
-                                ['05:20', 15, 9, 22, 8, 30.5],
-                                ['06:30', 15, 12, 39, 18, 32],
-                                ['06:50', 17, 17, 58, 7, 62],
-                                ['08:06', 19, 11, 15, 28, 25.4],
-                                ['09:12', 16, 19, 29, 26, 27.6]];
+                                ['05:00', 15, 9, 22, 8, 13.5],
+                                ['06:00', 15, 12, 39, 18, 21],
+                                ['07:00', 17, 17, 58, 7, 24.75],
+                                ['08:00', 19, 11, 15, 28, 18.25],
+                                ['09:00', 16, 19, 29, 26, 20]];
                 var rowData2 = [['Hora', 'Robo/Casa', 'Robo/Civil', 'Robo/Vehiculo', 'Robo/Comercio',
                                 'Promedio'],
-                                ['05:20', 15, 38, 52, 9, 40.6],
-                                ['06:30', 13, 10, 29, 18, 38],
-                                ['06:50', 15, 16, 35, 13, 25],
-                                ['08:06', 13, 10, 15, 8, 16.4],
-                                ['09:12', 13, 16, 7, 9, 16.6]];
+                                ['05:00', 15, 38, 52, 9, 28.5],
+                                ['06:00', 13, 10, 29, 18, 17.5],
+                                ['07:00', 15, 16, 35, 13, 26],
+                                ['08:00', 13, 10, 15, 8, 11.5],
+                                ['09:00', 13, 16, 7, 9, 11.25]];
                 var rowData3 = [['Hora', 'Robo/Casa', 'Robo/Civil', 'Robo/Vehiculo', 'Robo/Comercio',
                                 'Promedio'],
-                                ['05:20', 6, 3, 12, 8, 9.6],
-                                ['06:30', 5, 2, 9, 6, 7.4],
-                                ['06:50', 7, 8, 5, 7, 7.2],
-                                ['08:06', 9, 7, 11, 9, 9.4],
-                                ['09:12', 6, 5, 6, 2, 6.2]];
+                                ['05:00', 6, 3, 12, 8, 7.25],
+                                ['06:00', 5, 2, 9, 6, 5.5],
+                                ['07:00', 7, 8, 5, 7, 6.75],
+                                ['08:00', 9, 7, 11, 9, 9],
+                                ['09:00', 6, 5, 6, 2, 4.75]];
                 var rowData4 = [['Hora', 'Robo/Casa', 'Robo/Civil', 'Robo/Vehiculo', 'Robo/Comercio',
                                 'Promedio'],
-                                ['05:20', 26, 8, 12, 8, 14.6],
-                                ['06:30', 15, 12, 19, 16, 17.4],
-                                ['06:50', 17, 3, 5, 7, 8.2],
-                                ['08:06', 19, 4, 13, 9, 10.4],
-                                ['09:12', 16, 5, 6, 2, 7.2]];
+                                ['05:00', 26, 8, 12, 8, 13.5],
+                                ['06:00', 15, 12, 19, 16, 15.5],
+                                ['07:00', 17, 3, 5, 7, 8],
+                                ['08:00', 19, 4, 13, 9, 11.25],
+                                ['09:00', 16, 5, 6, 2, 7.25]];
                 var rowData5 = [['Hora', 'Robo/Casa', 'Robo/Civil', 'Robo/Vehiculo', 'Robo/Comercio',
                                 'Promedio'],
-                                ['05:20', 6, 3, 12, 8, 19.6],
-                                ['06:30', 5, 2, 9, 6, 17.4],
-                                ['06:50', 7, 8, 5, 7, 17.2],
-                                ['08:06', 9, 7, 11, 9, 19.4],
-                                ['09:12', 6, 5, 6, 2, 16.2]];
+                                ['05:00', 6, 3, 12, 8, 7.25],
+                                ['06:00', 5, 2, 9, 6, 5.5],
+                                ['07:00', 7, 8, 5, 7, 6.75],
+                                ['08:00', 9, 7, 11, 9, 9],
+                                ['09:00', 6, 5, 6, 2, 4.75]];
                 // Create and populate the data tables.
                 var data = [];
                 data[0] = google.visualization.arrayToDataTable(rowData1);
@@ -71,20 +71,66 @@
                 var button3 = document.getElementById('b3');
                 var button4 = document.getElementById('b4');
                 var button5 = document.getElementById('b5');
+
+                var control = new google.visualization.ControlWrapper({
+                    controlType: 'ChartRangeFilter',
+                    containerId: 'control_div',
+                    options: {
+                        filterColumnIndex: 0
+                    }
+                });
+
+                var table = new google.visualization.ChartWrapper({
+                    chartType: 'Table',
+                    containerId: 'table_div',
+                    dataTable: data[1],
+                    options: {
+                        sortColumn: 1
+                    }
+                });
+
+                google.visualization.events.addListener(control, 'statechange', function () {
+                    var state = control.getState();
+                    var view = new google.visualization.DataView(data[3]);
+                    view.setRows(view.getFilteredRows([{column: 0, minValue: state.range.start, maxValue: state.range.end}]));
+                    table.setDataTable(view);
+                    table.draw();
+                });
+
                 function drawChart() {
                     // Disabling the button while the chart is drawing.
                     button1.disabled = true;
                     google.visualization.events.addListener(chart, 'ready',
                         function() {
                             button1.disabled = false;
-
                         });
                     options['title'] = 'Delitos en el Sector ' + (current + 1 ) + ' de S.L.P.';
-
+                    
+                    dashboard.bind([control]);
                     chart.draw(data[current], options);
                 }
                 drawChart();
 
+                var previewOptions = {
+                    width: 250,
+                    height: 150,
+                    seriesType: "bars",
+                    series: {4: {type: "line"}},
+                };
+                var chartN = new google.visualization.ComboChart(document.getElementById('sectorN'));
+                var chartS = new google.visualization.ComboChart(document.getElementById('sectorS'));
+                var chartC = new google.visualization.ComboChart(document.getElementById('sectorC'));
+                var chartO = new google.visualization.ComboChart(document.getElementById('sectorO'));
+                var chartP = new google.visualization.ComboChart(document.getElementById('sectorP'));
+                function drawPreview() {
+                    // Disabling the button while the chart is drawing.
+                    chartN.draw(data[0], previewOptions);
+                    chartS.draw(data[1], previewOptions);
+                    chartC.draw(data[2], previewOptions);
+                    chartO.draw(data[3], previewOptions);
+                    chartP.draw(data[4], previewOptions);
+                }
+                drawPreview();
                 button1.onclick = function() {
                     current = 0;
                     drawChart();
@@ -110,13 +156,34 @@
         </script>
     </head>
     <body>
-        <input type="button" value="Sector Norte" id="b1" >
-        <input type="button" value="Sector Sur" id="b2" >
-        <input type="button" value="Sector Centro" id="b3" >
-        <input type="button" value="Sector Oriente" id="b4" >
-        <input type="button" value="Sector Poniente" id="b5" >
-        <div id="visualization" style="width:800; height:500"> 
+        <div>
+
+            <div>
+                <div id="sectorN" style="width: 300px; height:200px"></div>
+                    <input type="button" value="Sector Norte" id="b1" >
+            </div>
+            <div>
+                <div id="sectorS" style="width: 300px; height:200px"></div>
+                <input type="button" value="Sector Sur" id="b2" >
+            </div>
+            <div>
+                <div id="sectorC" style="width: 300px; height:200px"></div>
+                <input type="button" value="Sector Centro" id="b3" >
+            </div>
+            <div>
+                <div id="sectorO" style="width: 300px; height:200px"></div>
+                <input type="button" value="Sector Oriente" id="b4" >
+            </div>
+            <div>
+                <div id="sectorP" style="width: 300px; height:200px"></div>
+                <input type="button" value="Sector Poniente" id="b5" >
+            </div>
         </div>
+        <div id="visualization" style="width: 915px; height:500px">
+            
+        </div>
+        <div id="control_div" style='width: 915px; height: 50px;'></div>
+        <div id="table_div"></div>
     </body>
         
 </html>
