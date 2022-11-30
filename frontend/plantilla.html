@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>W3.CSS Template</title>
+<title>MUINT</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -127,8 +127,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                 drawChart();
 
                 var previewOptions = {
-                    width: 250,
-                    height: 150,
+                    width: 175,
+                    height: 100,
                     seriesType: "bars",
                     series: {4: {type: "line"}},
                 };
@@ -218,19 +218,20 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <div class="w3-row-padding w3-margin-bottom">
     <div class="w3-quarter">
       <div class="w3-container w3-black w3-padding-16">
-        <div class="w3-center" id="sectorN">
+        <div class="w3-center" id="sectorN" style="width:50%">
         </div>
         <div class="w3-center">
-          <input type="button" value="Sector Norte" id="b1" >
+          <button class="w3-button w3-black" id="b1" >Sector Norte</button>
         </div>
       </div>
     </div>
     <div class="w3-quarter">
-      <div class="w3-container w3-gray w3-padding-16">
-        <div class="w3-right" id="sectorS">
+      <div class="w3-container w3-dark-grey w3-padding-16">
+        <div class="w3-center" id="sectorS">
         </div>
-        <div class="w3-clear"></div>
-        <input type="button" value="Sector Sur" id="b2" >
+        <div class="w3-center">
+          <button class="w3-button w3-dark-grey" id="b2" >Sector Sur</button>
+        </div>
       </div>
     </div>
     <div class="w3-quarter">
@@ -238,7 +239,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <div class="w3-center" id="sectorC">
         </div>
         <div class="w3-center">
-          <input type="button" value="Sector Centro" id="b3" >
+          <button class="w3-button w3-blue" id="b3" >Sector Centro</button>
         </div>
       </div>
     </div>
@@ -246,7 +247,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-yellow w3-text-white w3-padding-16">
         <div class="w3-center" id="sectorO"></div>
         <div class="w3-center">
-          <input type="button" value="Sector Oriente" id="b4" >
+          <button class="w3-button w3-yellow" id="b4" >Sector Oriente</button>
         </div>
       </div>
     </div>
@@ -254,7 +255,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-white w3-text-black w3-padding-16">
         <div class="w3-center" id="sectorP"></div>
         <div class="w3-center">
-          <input type="button" value="Sector Poniente" id="b5" >
+          <button class="w3-button w3-white" id="b5" >Sector Poniente</button>
         </div>
       </div>
     </div>
@@ -264,8 +265,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <div class="w3-panel">
     <div class="w3-row-padding" style="margin:0 -16px">
       <div class="w3-third">
+        <h5>Gráfica de Delitos</h5>
+        <div id="visualization" style="width: 100%"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Delitos Recientes -->
+  <div class="w3-panel">
+    <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-third">
         <h5>Delitos</h5>
-        <div id="visualization" style="width: 1000px; height:500px"></div>
+        
       </div>
     </div>
   </div>
