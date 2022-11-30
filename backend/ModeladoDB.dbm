@@ -168,13 +168,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
 	<position x="353.619" y="284.508"/>
-	<column name="id_municipio" not-null="true">
-		<type name="integer"/>
-		<comment><![CDATA[Identificador del municipio]]></comment>
-	</column>
 	<column name="municipio" not-null="true">
 		<type name="varchar"/>
 		<comment><![CDATA[Nombre del municipio]]></comment>
+	</column>
+	<column name="id_municipio" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[Identificador del municipio]]></comment>
 	</column>
 	<constraint name="id_municipio_pk" type="pk-constr" factor="10" table="muint.municipios">
 		<tablespace name="pg_default"/>
@@ -251,11 +251,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
 	<position x="492.238" y="197.492"/>
-	<column name="id_calle">
-		<type name="integer"/>
-	</column>
 	<column name="calle">
 		<type name="varchar" length="150"/>
+	</column>
+	<column name="id_calle">
+		<type name="integer"/>
 	</column>
 	<constraint name="id_calle_pk" type="pk-constr" factor="10" table="muint.calles">
 		<tablespace name="pg_default"/>
@@ -293,14 +293,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="id_motivo">
 		<type name="integer"/>
 	</column>
-	<column name="fecha">
-		<type name="date"/>
-	</column>
 	<column name="hora">
 		<type name="time"/>
 	</column>
 	<column name="motivo" not-null="true">
 		<type name="varchar" length="100"/>
+	</column>
+	<column name="fecha">
+		<type name="date"/>
 	</column>
 	<constraint name="id_motivo_pk" type="pk-constr" factor="10" table="muint.motivo">
 		<tablespace name="pg_default"/>
@@ -382,10 +382,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="id_usuario" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="user" not-null="true">
+	<column name="password" not-null="true">
 		<type name="varchar" length="50"/>
 	</column>
-	<column name="password" not-null="true">
+	<column name="user" not-null="true">
 		<type name="varchar" length="50"/>
 	</column>
 	<constraint name="id_usuarios_pk" type="pk-constr" factor="10" table="muint.usuario">
@@ -433,7 +433,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="910.86" y="751.428"/>
+	<position x="904.193" y="804.761"/>
 	<column name="id_color" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -468,7 +468,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="motor">
 	<schema name="public"/>
-	<position x="844.034" y="853.81"/>
+	<position x="872.367" y="887.143"/>
 	<column name="id_motor" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -814,7 +814,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="862.857" y="535.714"/>
+	<position x="871.19" y="619.047"/>
 	<column name="id_personas" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -879,6 +879,32 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 col-indexes="3" constr-indexes="2"
 	 src-table="muint.registro_detenciones"
 	 dst-table="muint.robo"
+	 src-required="false" dst-required="false"/>
+
+<table name="fotos">
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="881.667" y="530"/>
+	<column name="id_foto" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="foto" not-null="true">
+		<type name="integer"/>
+	</column>
+	<constraint name="id_foto_pk" type="pk-constr" factor="10" table="muint.fotos">
+		<tablespace name="pg_default"/>
+		<columns names="id_foto" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="fotos_has_many_informacion" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="12" constr-indexes="13"
+	 src-table="muint.fotos"
+	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>
