@@ -247,3 +247,220 @@ COMMENT ON COLUMN muint.persona.id_municipio IS 'Identificador del municipio';
 ALTER TABLE muint.persona OWNER TO postgres;
 -- ddl-end --
 */
+
+
+---------------------------------INSERTS-------------------------------------------
+---------------------------------INSERTS-------------------------------------------
+---------------------------------INSERTS-------------------------------------------
+---------------------------------INSERTS-------------------------------------------
+
+-----------------------------estado civil----------------------
+INSERT INTO muint.estado_civil(id_ec,estado_civil)
+values (1,'soltero'),
+	(2,'casado'),
+	(3,'divorciado'),
+	(4,'viudo');
+
+----------------------------pref_sexual----------------------
+INSERT INTO muin.pref_sexual(id_pref_sexual,pref_sexual)
+values (1,'Heterosexaul'),
+	(2,'Homosexual'),
+	(3,'Bisexual'),
+	(4,'Pansexual'),
+	(5,'otro');
+
+----------------------------escolaridad------------------------(Propenso a cambios)
+INSERT INTO muint.escolaridad(id_escolaridad,escolaridad)
+values	(1,'inicial'),
+	(2,'básica'),
+	(3,'media superior'),
+	(4,'superior'),
+	(5,'tecnologica'),
+	(6,'indígena'),
+	(7,'NULL');
+
+---------------------------adicciones-------------------------
+INSET INTO muint.adicciones(id_adicciones,adicciones)
+values	(1,'alcoholismo'),
+	(2,'tabaquismo'),
+	(3,'psicofármaco'),
+	(4,'opiáceos'),
+	(5,'esteroides'),
+	(6,'taquitos de tripita');
+
+--------------------------nacionalidad-------------------------
+INSERT INTO muint.nacionalidad(id_nacionalidad,nacionalidad)
+values (1,'Mexicano'),
+		(2,'hondureño'),
+		(3,'Estadounidense'),
+		(4,'Argetino'),
+		(5,'Costa risence');
+
+--------------------------discapacidades----------------------
+INSERT INTO muint.estados(id_estado,estado)
+values (1,'San Luis Potosi'),
+		(2,'Monterrey'),
+		(3,'Guerrero'),
+		(4,'Oaxaca'),
+		(6,'Veracruz');
+
+--------------------------municipios----------------------------
+INSERT INTO muint.municipios(id_estado,municipio,id_municipio)
+values (1,'San Luis Potosi',1),
+		(1,'Ciudad Valles',2),
+		(1,'Xilitla',3),
+		(2,'Agualeguas',4),
+		(2,'Los Aldamas',5);
+
+------------------------sector---------------------------------
+INSERT INTO muint.sector(is_sector,sector)
+values (1,'norte'),
+		(2,'Sur'),
+		(3,'Este'),
+		(4,'Oeste');
+
+-----------------------calles-----------------------------------
+INSERT INTO muint.calles(id_sector,calle,id_calle)
+values (1,'Jesus Urbina',1),
+		(2,'Pedro Moreno',2),
+		(2,'Calle 2',3),
+		(3,'Calle 18',4),
+		(4,'Calle 6',5);
+
+-----------------------nivel------------------------------------
+INSERT INTO muint,nivel(id_nivel,nivel)
+values (1,'administrador'),
+		(2,'oficial'),
+		(3,'registrador');
+
+----------------------usuario-----------------------------------
+INSERT INTO muint.usuario(id_usuario,id_nivel,password,user)
+values (1,1,'456asx65*','Jan Hernandez'),
+		(2,1,'321fgh89*','Nicole Handz'),
+		(3,2, '753asd65*','Miguel Gutierrez'),
+		(4,2,'442qwe32*','Maria Fernandez');
+
+----------------------unidad-------------------------------------
+INSERT INTO muint.unidad(id_unidad,unidad)
+values (1,'123b'),
+		(2,'456a'),
+		(3,'786c'),
+		(4,'159d'),
+		(5,'741e');
+
+-------------------- motivo-------------------------------------(REVISAR ANTES, posible conflicto con los tipos de datos date y fecha)
+INSERT INTO muint.motivo(id_motivo,id_unidad,fecha,hora,motivo)
+values (1,2,'2022-12-12','12:30','albotador bajo el consumo de drogas'),
+		(2,2,'2023-01-02','15:30','robo a mano armada a tienda local'),
+		(3,1,'2023-04-02','12:00','robo un globo el dia del globo gratis');
+
+---------------------geo--------------------------------------------
+ISERT INTO muint.geo(id_geo,longitud,latitud)
+values (1,222563,456893),
+		(2,453786,456963),
+		(3,548753,540120);
+
+-------------------personas--------------------------------------------
+INSERT INTO muint.personas(id_personas,nombre,ap,am,fec_nac,peso,ocupacion,genero,cp,num_ext,num_int)
+values (1,'Juan','Gimenes','Gomes','1990',85.2,'NULL','Masculino',74147,130,2),
+		(2,'Griselda','Gimenes','Gomes','1999',65.2,'NULL','Femenino',74147,130,2),
+		(3,'Estevan','Gimenes','Gomes','1989',85.2,'gerente de abarrotes','Masculino',74147,45,6);
+
+--------------------aprehension--------------------------------------
+INSERT INTO muint.eprehension(id_informacion,id_motivo,id_geo,observaciones,id_personas)
+values (1,1,1,'mostrava varias eridas cerca del cuello',1),
+		(2,2,2,'el sujeto se aferraba auna bolsa vacia le llamava tesoro',2),
+		(3,3,3,'parecia aver consumido estupefacientes previamente',3);
+
+----------------------lado--------------------------------------------
+INSERT INTO muint.lado(id_lado,lado)
+values (1,'costado'),
+		(2,'superior'),
+		(3,'inferiror');
+
+-----------------------cuerpo-----------------------------------------
+INSERT INTO muint.cuerpo(id_cuerpo,cuerpo)
+values (1,'Espalda'),
+		(2,'Pierna'),
+		(3,'Pecho');
+
+-----------------------tatuajes--------------------------------------
+INSERT INTO muint.tatuajes(id_tatuaje,tatuaje,id_cuerpo,id_lado)
+values (1,'Calavera',1,1),
+		(2,'Guns and Roses',2,2),
+		(3,'El nombre de su ex',3,3);
+
+--------------------------fotos--------------------------------------
+INSERT INTO muint.fotos(id_foto,foto)
+values (1,8),
+		(2,6),
+		(3,7);
+
+---------------------discapacidades----------------------------------
+INSERT INTO muint.arma(id_arma,tipo_arma)
+values (1,true),
+		(2,true),
+		(3,false);
+---------------------registro_detenciones----------------------------
+INSERT INTO muint.registro_detenciones(id_registro,registro_propiedad,id_arma)
+values (1,'200 pesos, 45 gr de coca',1),
+		(2,'1 mochila',2),
+		(3,'4 celulares',3);
+
+
+---------------------robo-------------------------------------------
+INSERT INTO muint.robo(id_robo,caracteristicas,id_oxxo,id_registro)
+values (1,'tomo un reen',1,1),
+		(2,'NULL',2,2),
+		(3,'NULL',2,2);
+
+-------------------modelos_motores----------------------------------
+INSERT INTO muint.modelos_motores(id_modelos_motores,modelos_motores)
+values (1,'G45C'),
+		(2,'VBF32'),
+		(3,'2DF77A');
+
+----------------------motores--------------------------------------
+INSERT INTO muint.motor(id_motor,moto,id_modelos_motores)
+values (1,'Mustang',1),
+		(2,'Wankel'3),
+		(3,'Monocilindrico',2);
+
+----------------------tipo_veiculo--------------------------------
+INSERT INTO muint.tipo_vehiculo(id_tipo_vehiculo,tipo_vehiculo)
+values (1,'Camioneta'),
+		(2,'Motocicleta'),
+		(3,'Automovil');
+----------------------sub_marca_vehiculo---------------------------
+INSERT INTO muint.sub_marca_vehiculo(id_sub_marca_vehiculo,sub_marca:vehiculo)
+values (1,'Land rover'),
+		(2,'KIA'),
+		(3,'DACIA');
+------------------------marca_vehiculos--------------------------
+INSERT INTO muint.marca_vehiculo(id_marca_vehiculo,marca_vehiculo,id_sub_marca_vehiculo)
+values (1,'Chevrolet',1),
+		(2,'NISAN',2),
+		(3,'Ferrari',3);
+------------------------informacion--------------------------------
+INSERT INTO muint.informacion(id_informacion,id_personas,id_ec,id_pref_sexual,id_escolaridad,id_adicciones,id_nacionalidad,id_municipio,id_estado,id_calle,id_usuario,id_tatuaje,id_foto)
+values (1,1,1,1,1,1,1,1,1,1,1,1,1),
+		(2,2,2,2,2,2,2,2,2,2,2,2,2),
+		(3,3,3,3,3,3,3,3,3,3,3,3,3);
+
+------------------------vehiculo-------------------------------------
+INSERT INTO munit.vehiculo(id_vehiculo,serie,placas,id_motor,id_marca_vehiculo,id_tipo_vehiculo,id_informacion,id_personas)
+values (1,'AAAAAAABD','L4M3CUL05',1,1,1,1,1),
+	(2,'CCAAAAABD','T3T45P3T3R',2,2,2,2,2),
+	(3,'SSAFFAABD','L4M3E5032',3,3,3,3,3);
+
+---------------------------colores---------------------------------
+INSERT INTO muint.colores(id_color,color,id_vehiculo)
+values (1,'Negro',1),
+		(2,'Amarillo',1).
+		(3,'Rojo',2);
+
+--------------------oxxo--------------------------------------------
+INSERT INTO muint.oxxo(id_oxxo,oxxo,total_robos,fecha,id_informacion,id_personas)
+values (1,'Juaquin Cerdan',2,'2022-05-05',1,1),
+	(2,'Boulevar',8,'2022-10-05',2,1),
+	(3,'Boulevar 2',1,'2022-09-03'3,2);
