@@ -1,259 +1,3 @@
--- object: muint.estado_civil | type: TABLE --
--- DROP TABLE muint.estado_civil;
-/*
-CREATE TABLE muint.estado_civil(
-	id_ec smallint,
-	estado_civil varchar(20) NOT NULL,
-	CONSTRAINT id_ec_pk PRIMARY KEY (id_ec)
-	WITH (FILLFACTOR = 10)
-	USING INDEX TABLESPACE pg_default
-
-)
-TABLESPACE pg_default;
--- ddl-end --
-ALTER TABLE muint.estado_civil OWNER TO postgres;
--- ddl-end --
---------------------------------------------
-CREATE TABLE muint.pref_sexual(
-	id_pref_sexual smallint NOT NULL,
-	pref_sexual varchar(20) NOT NULL,
-	CONSTRAINT id_pref_sexual_pk PRIMARY KEY (id_pref_sexual)
-	WITH (FILLFACTOR = 10)
-	USING INDEX TABLESPACE pg_default
-
-)
-TABLESPACE pg_default;
--- ddl-end --
-ALTER TABLE muint.pref_sexual OWNER TO postgres;
--- ddl-end --
----------------------------------------------------
-CREATE TABLE muint.escolaridad(
-	id_escolaridad smallint NOT NULL,
-	escolaridad varchar(15) NOT NULL,
-	CONSTRAINT id_escolaridad_pk PRIMARY KEY (id_escolaridad)
-
-)
-TABLESPACE pg_default;
--- ddl-end --
-ALTER TABLE muint.escolaridad OWNER TO postgres;
--- ddl-end --
---------------------------------------------------------
-CREATE TABLE muint.adicciones(
-	id_adicciones smallint,
-	adicciones varchar(100),
-	CONSTRAINT id_adicciones_pk PRIMARY KEY (id_adicciones)
-	WITH (FILLFACTOR = 10)
-	USING INDEX TABLESPACE pg_default
-
-)
-TABLESPACE pg_default;
--- ddl-end --
-ALTER TABLE muint.adicciones OWNER TO postgres;
--- ddl-end --
--------------------------------------------
-
-CREATE TABLE muint.nacionalidad(
-	id_nacionalidad integer,
-	nacionalidad varchar(30) NOT NULL,
-	CONSTRAINT id_nacionalidad_pk PRIMARY KEY (id_nacionalidad)
-	WITH (FILLFACTOR = 10)
-	USING INDEX TABLESPACE pg_default
-
-)
-TABLESPACE pg_default;
--- ddl-end --
-ALTER TABLE muint.nacionalidad OWNER TO postgres;
--- ddl-end --
-
---------------------------------------------------
-CREATE TABLE muint.estados(
-	id_estado integer,
-	estado varchar(60) NOT NULL,
-	CONSTRAINT id_estado_pk PRIMARY KEY (id_estado)
-	WITH (FILLFACTOR = 10)
-	USING INDEX TABLESPACE pg_default
-
-)
-TABLESPACE pg_default;
--- ddl-end --
-ALTER TABLE muint.estados OWNER TO postgres;
--- ddl-end --
-
-----------------------------------------------------
-CREATE TABLE muint.municipios(
-	id_estado integer,
-	municipio varchar NOT NULL,
-	id_municipio integer NOT NULL,
-	CONSTRAINT id_municipio_pk PRIMARY KEY (id_municipio,id_estado)
-	WITH (FILLFACTOR = 10)
-	USING INDEX TABLESPACE pg_default
-
-)
-TABLESPACE pg_default;
--- ddl-end --
-COMMENT ON COLUMN muint.municipios.municipio IS 'Nombre del municipio';
-COMMENT ON COLUMN muint.municipios.id_municipio IS 'Identificador del municipio';
-ALTER TABLE muint.municipios OWNER TO postgres;
--- ddl-end --
-
------------------------------------------
-CREATE TABLE muint.sector(
-	id_sector smallint,
-	sector varchar(20) NOT NULL,
-	CONSTRAINT id_sector_pk PRIMARY KEY (id_sector)
-	WITH (FILLFACTOR = 10)
-	USING INDEX TABLESPACE pg_default
-
-)
-TABLESPACE pg_default;
--- ddl-end --
-ALTER TABLE muint.sector OWNER TO postgres;
--- ddl-end --
-
-------------------------------------------
-CREATE TABLE muint.calles(
-	id_sector smallint,
-	calle varchar(150),
-	id_calle integer,
-	CONSTRAINT id_calle_pk PRIMARY KEY (id_calle)
-	WITH (FILLFACTOR = 10)
-	USING INDEX TABLESPACE pg_default
-
-)
-TABLESPACE pg_default;
--- ddl-end --
-ALTER TABLE muint.calles OWNER TO postgres;
--- ddl-end --
-
--------------------------------------------------
-CREATE TABLE muint.unidad(
-	id_unidad integer NOT NULL,
-	unidad varchar(100) NOT NULL,
-	CONSTRAINT id_unidad_pk PRIMARY KEY (id_unidad)
-	WITH (FILLFACTOR = 10)
-	USING INDEX TABLESPACE pg_default
-
-)
-TABLESPACE pg_default;
--- ddl-end --
-ALTER TABLE muint.unidad OWNER TO postgres;
--- ddl-end --
-
------------------------------------------------
-CREATE TABLE muint.motivo(
-	id_motivo integer,
-	id_unidad integer,
-	hora time,
-	motivo varchar(100) NOT NULL,
-	fecha date,
-	CONSTRAINT id_motivo_pk PRIMARY KEY (id_motivo)
-	WITH (FILLFACTOR = 10)
-	USING INDEX TABLESPACE pg_default
-
-)
-TABLESPACE pg_default;
--- ddl-end --
-ALTER TABLE muint.motivo OWNER TO postgres;
--- ddl-end --
-
-----------------------------------------------
-CREATE TABLE muint.geo(
-	id_geo integer NOT NULL,
-	longitud double precision NOT NULL,
-	latitud double precision NOT NULL,
-	CONSTRAINT id_geo_pk PRIMARY KEY (id_geo)
-	WITH (FILLFACTOR = 10)
-	USING INDEX TABLESPACE pg_default
-
-)
-TABLESPACE pg_default;
--- ddl-end --
-ALTER TABLE muint.geo OWNER TO postgres;
--- ddl-end --
-
------------------------------------------------
-CREATE TABLE muint.aprehension(
-	id_persona integer,
-	id_motivo integer,
-	id_geo integer,
-	observaciones varchar(500)
-)
-TABLESPACE pg_default;
--- ddl-end --
-ALTER TABLE muint.aprehension OWNER TO postgres;
--- ddl-end --
-
------------------------------------------------
-CREATE TABLE muint.nivel(
-	id_nivel smallint NOT NULL,
-	nivel varchar(20) NOT NULL,
-	CONSTRAINT id_nivel_pk PRIMARY KEY (id_nivel)
-	WITH (FILLFACTOR = 10)
-	USING INDEX TABLESPACE pg_default
-
-)
-TABLESPACE pg_default;
--- ddl-end --
-ALTER TABLE muint.nivel OWNER TO postgres;
--- ddl-end --
-
-------------------------------------------------
-CREATE TABLE muint.usuario(
-	id_usuario integer NOT NULL,
-	id_nivel smallint,
-	contraseña varchar(50) NOT NULL,--secambio porque era una palabra especial
-	usuario varchar(50) NOT NULL,--se cambio porque era una palabra especial
-	CONSTRAINT id_usuarios_pk PRIMARY KEY (id_usuario)
-	WITH (FILLFACTOR = 10)
-	USING INDEX TABLESPACE pg_default
-
-)
-TABLESPACE pg_default;
--- ddl-end --
-ALTER TABLE muint.usuario OWNER TO postgres;
--- ddl-end --
-
---------------------------------------------------
-CREATE TABLE muint.persona(
-	id_persona integer,
-	nombre varchar(30) NOT NULL,
-	ap varchar(20),
-	am varchar(20),
-	fec_nac date NOT NULL,
-	peso float,
-	ocupacion varchar(50),
-	genero char NOT NULL,
-	cp integer NOT NULL,
-	numero_ext integer NOT NULL,
-	numero_int integer,
-	id_ec smallint,
-	id_pref_sexual smallint,
-	id_escolaridad smallint,
-	id_adicciones smallint,
-	id_nacionalidad integer,
-	id_municipio integer,
-	id_estado integer,
-	id_calle integer,
-	id_usuario integer,
-	CONSTRAINT id_persona_pk PRIMARY KEY (id_persona)
-	WITH (FILLFACTOR = 10)
-	USING INDEX TABLESPACE pg_default
-
-)
-TABLESPACE pg_default;
--- ddl-end --
-COMMENT ON COLUMN muint.persona.genero IS 'Masculino (M), Femenino (F)';
-COMMENT ON COLUMN muint.persona.id_municipio IS 'Identificador del municipio';
-ALTER TABLE muint.persona OWNER TO postgres;
--- ddl-end --
-*/
-
-
----------------------------------INSERTS-------------------------------------------
----------------------------------INSERTS-------------------------------------------
----------------------------------INSERTS-------------------------------------------
----------------------------------INSERTS-------------------------------------------
-
 -----------------------------estado civil----------------------
 INSERT INTO muint.estado_civil(id_ec,estado_civil)
 values (1,'soltero'),
@@ -262,7 +6,7 @@ values (1,'soltero'),
 	(4,'viudo');
 
 ----------------------------pref_sexual----------------------
-INSERT INTO muin.pref_sexual(id_pref_sexual,pref_sexual)
+INSERT INTO muint.pref_sexual(id_pref_sexual,pref_sexual)
 values (1,'Heterosexaul'),
 	(2,'Homosexual'),
 	(3,'Bisexual'),
@@ -280,7 +24,7 @@ values	(1,'inicial'),
 	(7,'NULL');
 
 ---------------------------adicciones-------------------------
-INSET INTO muint.adicciones(id_adicciones,adicciones)
+INSERT INTO muint.adicciones(id_adicciones,adicciones)
 values	(1,'alcoholismo'),
 	(2,'tabaquismo'),
 	(3,'psicofármaco'),
@@ -313,7 +57,7 @@ values (1,'San Luis Potosi',1),
 		(2,'Los Aldamas',5);
 
 ------------------------sector---------------------------------
-INSERT INTO muint.sector(is_sector,sector)
+INSERT INTO muint.sector(id_sector,sector)
 values (1,'norte'),
 		(2,'Sur'),
 		(3,'Este'),
@@ -328,13 +72,13 @@ values (1,'Jesus Urbina',1),
 		(4,'Calle 6',5);
 
 -----------------------nivel------------------------------------
-INSERT INTO muint,nivel(id_nivel,nivel)
+INSERT INTO muint.nivel(id_nivel,nivel)
 values (1,'administrador'),
 		(2,'oficial'),
 		(3,'registrador');
 
 ----------------------usuario-----------------------------------
-INSERT INTO muint.usuario(id_usuario,id_nivel,password,user)
+INSERT INTO muint.usuario(id_usuario,id_nivel,"password","user")
 values (1,1,'456asx65*','Jan Hernandez'),
 		(2,1,'321fgh89*','Nicole Handz'),
 		(3,2, '753asd65*','Miguel Gutierrez'),
@@ -355,19 +99,19 @@ values (1,2,'2022-12-12','12:30','albotador bajo el consumo de drogas'),
 		(3,1,'2023-04-02','12:00','robo un globo el dia del globo gratis');
 
 ---------------------geo--------------------------------------------
-ISERT INTO muint.geo(id_geo,longitud,latitud)
+INSERT INTO muint.geo(id_geo,longitud,latitud)
 values (1,222563,456893),
 		(2,453786,456963),
 		(3,548753,540120);
 
 -------------------personas--------------------------------------------
 INSERT INTO muint.personas(id_personas,nombre,ap,am,fec_nac,peso,ocupacion,genero,cp,num_ext,num_int)
-values (1,'Juan','Gimenes','Gomes','1990',85.2,'NULL','Masculino',74147,130,2),
-		(2,'Griselda','Gimenes','Gomes','1999',65.2,'NULL','Femenino',74147,130,2),
-		(3,'Estevan','Gimenes','Gomes','1989',85.2,'gerente de abarrotes','Masculino',74147,45,6);
+values (1,'Juan','Gimenes','Gomes','1990-01-29',85.2,'NULL','M',74147,130,2),
+		(2,'Griselda','Gimenes','Gomes','1999-01-29',65.2,'NULL','F',74147,130,2),
+		(3,'Estevan','Gimenes','Gomes','1989-01-29',85.2,'gerente de abarrotes','M',74147,45,6);
 
 --------------------aprehension--------------------------------------
-INSERT INTO muint.eprehension(id_informacion,id_motivo,id_geo,observaciones,id_personas)
+INSERT INTO muint.aprehension(id_informacion,id_motivo,id_geo,observaciones,id_personas)
 values (1,1,1,'mostrava varias eridas cerca del cuello',1),
 		(2,2,2,'el sujeto se aferraba auna bolsa vacia le llamava tesoro',2),
 		(3,3,3,'parecia aver consumido estupefacientes previamente',3);
@@ -423,7 +167,7 @@ values (1,'G45C'),
 ----------------------motores--------------------------------------
 INSERT INTO muint.motor(id_motor,moto,id_modelos_motores)
 values (1,'Mustang',1),
-		(2,'Wankel'3),
+		(2,'Wankel',3),
 		(3,'Monocilindrico',2);
 
 ----------------------tipo_veiculo--------------------------------
@@ -432,7 +176,7 @@ values (1,'Camioneta'),
 		(2,'Motocicleta'),
 		(3,'Automovil');
 ----------------------sub_marca_vehiculo---------------------------
-INSERT INTO muint.sub_marca_vehiculo(id_sub_marca_vehiculo,sub_marca:vehiculo)
+INSERT INTO muint.sub_marca_vehiculo(id_sub_marca_vehiculo,sub_marca,vehiculo)
 values (1,'Land rover'),
 		(2,'KIA'),
 		(3,'DACIA');
@@ -456,11 +200,11 @@ values (1,'AAAAAAABD','L4M3CUL05',1,1,1,1,1),
 ---------------------------colores---------------------------------
 INSERT INTO muint.colores(id_color,color,id_vehiculo)
 values (1,'Negro',1),
-		(2,'Amarillo',1).
+		(2,'Amarillo',1),
 		(3,'Rojo',2);
 
 --------------------oxxo--------------------------------------------
 INSERT INTO muint.oxxo(id_oxxo,oxxo,total_robos,fecha,id_informacion,id_personas)
 values (1,'Juaquin Cerdan',2,'2022-05-05',1,1),
 	(2,'Boulevar',8,'2022-10-05',2,1),
-	(3,'Boulevar 2',1,'2022-09-03'3,2);
+	(3,'Boulevar 2',1,'2022-09-03',3,2);

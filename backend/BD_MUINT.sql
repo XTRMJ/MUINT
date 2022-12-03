@@ -102,7 +102,6 @@ ALTER TABLE muint.sector OWNER TO postgres;
 -- object: muint.informacion | type: TABLE --
 -- DROP TABLE muint.informacion;
 CREATE TABLE muint.informacion(
-	id_informacion integer NOT NULL,
 	id_personas integer,
 	id_ec smallint,
 	id_pref_sexual smallint,
@@ -115,9 +114,7 @@ CREATE TABLE muint.informacion(
 	id_usuario integer,
 	id_tatuaje integer,
 	id_foto integer,
-	CONSTRAINT id_persona_pk PRIMARY KEY (id_informacion,id_personas)
-	WITH (FILLFACTOR = 10)
-	USING INDEX TABLESPACE pg_default
+	CONSTRAINT informacion_pk PRIMARY KEY (id_personas)
 
 )
 TABLESPACE pg_default;
@@ -175,8 +172,8 @@ ALTER TABLE muint.pref_sexual OWNER TO postgres;
 -- DROP TABLE muint.municipios;
 CREATE TABLE muint.municipios(
 	id_estado integer,
-	municipio varchar NOT NULL,
 	id_municipio integer NOT NULL,
+	municipio varchar NOT NULL,
 	CONSTRAINT id_municipio_pk PRIMARY KEY (id_municipio,id_estado)
 	WITH (FILLFACTOR = 10)
 	USING INDEX TABLESPACE pg_default
@@ -184,8 +181,8 @@ CREATE TABLE muint.municipios(
 )
 TABLESPACE pg_default;
 -- ddl-end --
-COMMENT ON COLUMN muint.municipios.municipio IS 'Nombre del municipio';
 COMMENT ON COLUMN muint.municipios.id_municipio IS 'Identificador del municipio';
+COMMENT ON COLUMN muint.municipios.municipio IS 'Nombre del municipio';
 ALTER TABLE muint.municipios OWNER TO postgres;
 -- ddl-end --
 
@@ -249,8 +246,8 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 -- DROP TABLE muint.calles;
 CREATE TABLE muint.calles(
 	id_sector smallint,
-	calle varchar(150),
 	id_calle integer,
+	calle varchar(150),
 	CONSTRAINT id_calle_pk PRIMARY KEY (id_calle)
 	WITH (FILLFACTOR = 10)
 	USING INDEX TABLESPACE pg_default
@@ -282,9 +279,9 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 CREATE TABLE muint.motivo(
 	id_motivo integer,
 	id_unidad integer,
+	motivo varchar(100) NOT NULL,
 	fecha date,
 	hora time,
-	motivo varchar(100) NOT NULL,
 	CONSTRAINT id_motivo_pk PRIMARY KEY (id_motivo)
 	WITH (FILLFACTOR = 10)
 	USING INDEX TABLESPACE pg_default
@@ -314,44 +311,15 @@ ALTER TABLE muint.geo OWNER TO postgres;
 -- object: muint.aprehension | type: TABLE --
 -- DROP TABLE muint.aprehension;
 CREATE TABLE muint.aprehension(
-	id_informacion integer,
-	id_motivo integer,
-	id_geo integer,
 	observaciones varchar(500),
+	id_geo integer,
+	id_motivo integer,
 	id_personas integer
 )
 TABLESPACE pg_default;
 -- ddl-end --
 ALTER TABLE muint.aprehension OWNER TO postgres;
 -- ddl-end --
-
--- object: motivo_fk | type: CONSTRAINT --
--- ALTER TABLE muint.aprehension DROP CONSTRAINT motivo_fk;
-ALTER TABLE muint.aprehension ADD CONSTRAINT motivo_fk FOREIGN KEY (id_motivo)
-REFERENCES muint.motivo (id_motivo) MATCH FULL
-ON DELETE SET NULL ON UPDATE CASCADE;
--- ddl-end --
-
-
--- object: aprehension_uq | type: CONSTRAINT --
--- ALTER TABLE muint.aprehension DROP CONSTRAINT aprehension_uq;
-ALTER TABLE muint.aprehension ADD CONSTRAINT aprehension_uq UNIQUE (id_motivo);
--- ddl-end --
-
-
--- object: informacion_fk | type: CONSTRAINT --
--- ALTER TABLE muint.aprehension DROP CONSTRAINT informacion_fk;
-ALTER TABLE muint.aprehension ADD CONSTRAINT informacion_fk FOREIGN KEY (id_informacion,id_personas)
-REFERENCES muint.informacion (id_informacion,id_personas) MATCH FULL
-ON DELETE SET NULL ON UPDATE CASCADE;
--- ddl-end --
-
-
--- object: aprehension_uq2 | type: CONSTRAINT --
--- ALTER TABLE muint.aprehension DROP CONSTRAINT aprehension_uq2;
-ALTER TABLE muint.aprehension ADD CONSTRAINT aprehension_uq2 UNIQUE (id_informacion,id_personas);
--- ddl-end --
-
 
 -- object: unidad_fk | type: CONSTRAINT --
 -- ALTER TABLE muint.motivo DROP CONSTRAINT unidad_fk;
@@ -361,27 +329,13 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
 
--- object: geo_fk | type: CONSTRAINT --
--- ALTER TABLE muint.aprehension DROP CONSTRAINT geo_fk;
-ALTER TABLE muint.aprehension ADD CONSTRAINT geo_fk FOREIGN KEY (id_geo)
-REFERENCES muint.geo (id_geo) MATCH FULL
-ON DELETE SET NULL ON UPDATE CASCADE;
--- ddl-end --
-
-
--- object: aprehension_uq1 | type: CONSTRAINT --
--- ALTER TABLE muint.aprehension DROP CONSTRAINT aprehension_uq1;
-ALTER TABLE muint.aprehension ADD CONSTRAINT aprehension_uq1 UNIQUE (id_geo);
--- ddl-end --
-
-
 -- object: muint.usuario | type: TABLE --
 -- DROP TABLE muint.usuario;
 CREATE TABLE muint.usuario(
 	id_usuario integer NOT NULL,
 	id_nivel smallint,
-	"password" varchar(50) NOT NULL,
 	"user" varchar(50) NOT NULL,
+	"password" varchar(50) NOT NULL,
 	CONSTRAINT id_usuarios_pk PRIMARY KEY (id_usuario)
 	WITH (FILLFACTOR = 10)
 	USING INDEX TABLESPACE pg_default
@@ -407,20 +361,6 @@ TABLESPACE pg_default;
 ALTER TABLE muint.nivel OWNER TO postgres;
 -- ddl-end --
 
--- object: nivel_fk | type: CONSTRAINT --
--- ALTER TABLE muint.usuario DROP CONSTRAINT nivel_fk;
-ALTER TABLE muint.usuario ADD CONSTRAINT nivel_fk FOREIGN KEY (id_nivel)
-REFERENCES muint.nivel (id_nivel) MATCH FULL
-ON DELETE SET NULL ON UPDATE CASCADE;
--- ddl-end --
-
-
--- object: usuario_uq | type: CONSTRAINT --
--- ALTER TABLE muint.usuario DROP CONSTRAINT usuario_uq;
-ALTER TABLE muint.usuario ADD CONSTRAINT usuario_uq UNIQUE (id_nivel);
--- ddl-end --
-
-
 -- object: usuario_fk | type: CONSTRAINT --
 -- ALTER TABLE muint.informacion DROP CONSTRAINT usuario_fk;
 ALTER TABLE muint.informacion ADD CONSTRAINT usuario_fk FOREIGN KEY (id_usuario)
@@ -440,7 +380,6 @@ ALTER TABLE muint.informacion ADD CONSTRAINT informacion_uq UNIQUE (id_usuario);
 CREATE TABLE muint.colores(
 	id_color integer NOT NULL,
 	color varchar(20) NOT NULL,
-	id_vehiculo integer,
 	CONSTRAINT id_color PRIMARY KEY (id_color)
 	WITH (FILLFACTOR = 10)
 	USING INDEX TABLESPACE pg_default
@@ -457,11 +396,11 @@ CREATE TABLE muint.vehiculo(
 	id_vehiculo integer NOT NULL,
 	serie char(17),
 	placas varchar(10),
-	id_motor integer,
 	id_marca_vehiculo integer,
 	id_tipo_vehiculo integer,
-	id_informacion integer,
 	id_personas integer,
+	id_motor integer,
+	id_color integer,
 	CONSTRAINT id_vehiculo_pk PRIMARY KEY (id_vehiculo)
 	WITH (FILLFACTOR = 10)
 	USING INDEX TABLESPACE pg_default
@@ -472,9 +411,9 @@ TABLESPACE pg_default;
 ALTER TABLE muint.vehiculo OWNER TO postgres;
 -- ddl-end --
 
--- object: public.motor | type: TABLE --
--- DROP TABLE public.motor;
-CREATE TABLE public.motor(
+-- object: muint.motor | type: TABLE --
+-- DROP TABLE muint.motor;
+CREATE TABLE muint.motor(
 	id_motor integer NOT NULL,
 	motor varchar(20) NOT NULL,
 	id_modelos_motores smallint,
@@ -482,8 +421,12 @@ CREATE TABLE public.motor(
 	WITH (FILLFACTOR = 10)
 	USING INDEX TABLESPACE pg_default
 
-);
+)
+TABLESPACE pg_default;
 -- ddl-end --
+ALTER TABLE muint.motor OWNER TO postgres;
+-- ddl-end --
+
 -- object: muint.modelos_motores | type: TABLE --
 -- DROP TABLE muint.modelos_motores;
 CREATE TABLE muint.modelos_motores(
@@ -500,25 +443,9 @@ ALTER TABLE muint.modelos_motores OWNER TO postgres;
 -- ddl-end --
 
 -- object: modelos_motores_fk | type: CONSTRAINT --
--- ALTER TABLE public.motor DROP CONSTRAINT modelos_motores_fk;
-ALTER TABLE public.motor ADD CONSTRAINT modelos_motores_fk FOREIGN KEY (id_modelos_motores)
+-- ALTER TABLE muint.motor DROP CONSTRAINT modelos_motores_fk;
+ALTER TABLE muint.motor ADD CONSTRAINT modelos_motores_fk FOREIGN KEY (id_modelos_motores)
 REFERENCES muint.modelos_motores (id_modelos_motores) MATCH FULL
-ON DELETE SET NULL ON UPDATE CASCADE;
--- ddl-end --
-
-
--- object: motor_fk | type: CONSTRAINT --
--- ALTER TABLE muint.vehiculo DROP CONSTRAINT motor_fk;
-ALTER TABLE muint.vehiculo ADD CONSTRAINT motor_fk FOREIGN KEY (id_motor)
-REFERENCES public.motor (id_motor) MATCH FULL
-ON DELETE SET NULL ON UPDATE CASCADE;
--- ddl-end --
-
-
--- object: vehiculo_fk | type: CONSTRAINT --
--- ALTER TABLE muint.colores DROP CONSTRAINT vehiculo_fk;
-ALTER TABLE muint.colores ADD CONSTRAINT vehiculo_fk FOREIGN KEY (id_vehiculo)
-REFERENCES muint.vehiculo (id_vehiculo) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
@@ -648,43 +575,12 @@ COMMENT ON COLUMN muint.cuerpo.cuerpo IS 'brazo, pierna, etc';
 ALTER TABLE muint.cuerpo OWNER TO postgres;
 -- ddl-end --
 
--- object: cuerpo_fk | type: CONSTRAINT --
--- ALTER TABLE muint.tatuajes DROP CONSTRAINT cuerpo_fk;
-ALTER TABLE muint.tatuajes ADD CONSTRAINT cuerpo_fk FOREIGN KEY (id_cuerpo)
-REFERENCES muint.cuerpo (id_cuerpo) MATCH FULL
-ON DELETE SET NULL ON UPDATE CASCADE;
--- ddl-end --
-
-
--- object: tatuajes_uq | type: CONSTRAINT --
--- ALTER TABLE muint.tatuajes DROP CONSTRAINT tatuajes_uq;
-ALTER TABLE muint.tatuajes ADD CONSTRAINT tatuajes_uq UNIQUE (id_cuerpo);
--- ddl-end --
-
-
--- object: lado_fk | type: CONSTRAINT --
--- ALTER TABLE muint.tatuajes DROP CONSTRAINT lado_fk;
-ALTER TABLE muint.tatuajes ADD CONSTRAINT lado_fk FOREIGN KEY (id_lado)
-REFERENCES muint.lado (id_lado) MATCH FULL
-ON DELETE SET NULL ON UPDATE CASCADE;
--- ddl-end --
-
-
--- object: tatuajes_uq1 | type: CONSTRAINT --
--- ALTER TABLE muint.tatuajes DROP CONSTRAINT tatuajes_uq1;
-ALTER TABLE muint.tatuajes ADD CONSTRAINT tatuajes_uq1 UNIQUE (id_lado);
--- ddl-end --
-
-
 -- object: muint.oxxo | type: TABLE --
 -- DROP TABLE muint.oxxo;
 CREATE TABLE muint.oxxo(
 	id_oxxo integer NOT NULL,
 	oxxo varchar(100) NOT NULL,
 	total_robos integer NOT NULL,
-	fecha timestamp,
-	id_informacion integer,
-	id_personas integer,
 	CONSTRAINT id_oxxo_pk PRIMARY KEY (id_oxxo)
 
 )
@@ -715,7 +611,6 @@ ALTER TABLE muint.registro_detenciones OWNER TO postgres;
 CREATE TABLE muint.discapacidades(
 	id_discapacidades smallint NOT NULL,
 	discapacidad varchar(30) NOT NULL,
-	id_informacion integer,
 	id_personas integer,
 	CONSTRAINT id_discapacidad_pk PRIMARY KEY (id_discapacidades)
 
@@ -730,8 +625,10 @@ ALTER TABLE muint.discapacidades OWNER TO postgres;
 CREATE TABLE muint.robo(
 	id_robo integer NOT NULL,
 	caracteristicas varchar(100) NOT NULL,
+	fecha timestamp,
 	id_oxxo integer,
 	id_registro integer,
+	id_personas integer,
 	CONSTRAINT id_robo_pk PRIMARY KEY (id_robo)
 
 )
@@ -762,34 +659,10 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
 
--- object: informacion_fk | type: CONSTRAINT --
--- ALTER TABLE muint.discapacidades DROP CONSTRAINT informacion_fk;
-ALTER TABLE muint.discapacidades ADD CONSTRAINT informacion_fk FOREIGN KEY (id_informacion,id_personas)
-REFERENCES muint.informacion (id_informacion,id_personas) MATCH FULL
-ON DELETE SET NULL ON UPDATE CASCADE;
--- ddl-end --
-
-
--- object: informacion_fk | type: CONSTRAINT --
--- ALTER TABLE muint.oxxo DROP CONSTRAINT informacion_fk;
-ALTER TABLE muint.oxxo ADD CONSTRAINT informacion_fk FOREIGN KEY (id_informacion,id_personas)
-REFERENCES muint.informacion (id_informacion,id_personas) MATCH FULL
-ON DELETE SET NULL ON UPDATE CASCADE;
--- ddl-end --
-
-
 -- object: oxxo_fk | type: CONSTRAINT --
 -- ALTER TABLE muint.robo DROP CONSTRAINT oxxo_fk;
 ALTER TABLE muint.robo ADD CONSTRAINT oxxo_fk FOREIGN KEY (id_oxxo)
 REFERENCES muint.oxxo (id_oxxo) MATCH FULL
-ON DELETE SET NULL ON UPDATE CASCADE;
--- ddl-end --
-
-
--- object: informacion_fk | type: CONSTRAINT --
--- ALTER TABLE muint.vehiculo DROP CONSTRAINT informacion_fk;
-ALTER TABLE muint.vehiculo ADD CONSTRAINT informacion_fk FOREIGN KEY (id_informacion,id_personas)
-REFERENCES muint.informacion (id_informacion,id_personas) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
@@ -815,14 +688,6 @@ TABLESPACE pg_default;
 -- ddl-end --
 ALTER TABLE muint.personas OWNER TO postgres;
 -- ddl-end --
-
--- object: personas_fk | type: CONSTRAINT --
--- ALTER TABLE muint.informacion DROP CONSTRAINT personas_fk;
-ALTER TABLE muint.informacion ADD CONSTRAINT personas_fk FOREIGN KEY (id_personas)
-REFERENCES muint.personas (id_personas) MATCH FULL
-ON DELETE CASCADE ON UPDATE CASCADE;
--- ddl-end --
-
 
 -- object: arma_fk | type: CONSTRAINT --
 -- ALTER TABLE muint.registro_detenciones DROP CONSTRAINT arma_fk;
@@ -863,4 +728,97 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
 
+-- object: nivel_fk | type: CONSTRAINT --
+-- ALTER TABLE muint.usuario DROP CONSTRAINT nivel_fk;
+ALTER TABLE muint.usuario ADD CONSTRAINT nivel_fk FOREIGN KEY (id_nivel)
+REFERENCES muint.nivel (id_nivel) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
 
+
+-- object: cuerpo_fk | type: CONSTRAINT --
+-- ALTER TABLE muint.tatuajes DROP CONSTRAINT cuerpo_fk;
+ALTER TABLE muint.tatuajes ADD CONSTRAINT cuerpo_fk FOREIGN KEY (id_cuerpo)
+REFERENCES muint.cuerpo (id_cuerpo) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+
+-- object: lado_fk | type: CONSTRAINT --
+-- ALTER TABLE muint.tatuajes DROP CONSTRAINT lado_fk;
+ALTER TABLE muint.tatuajes ADD CONSTRAINT lado_fk FOREIGN KEY (id_lado)
+REFERENCES muint.lado (id_lado) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+
+-- object: geo_fk | type: CONSTRAINT --
+-- ALTER TABLE muint.aprehension DROP CONSTRAINT geo_fk;
+ALTER TABLE muint.aprehension ADD CONSTRAINT geo_fk FOREIGN KEY (id_geo)
+REFERENCES muint.geo (id_geo) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+
+-- object: motivo_fk | type: CONSTRAINT --
+-- ALTER TABLE muint.aprehension DROP CONSTRAINT motivo_fk;
+ALTER TABLE muint.aprehension ADD CONSTRAINT motivo_fk FOREIGN KEY (id_motivo)
+REFERENCES muint.motivo (id_motivo) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+
+-- object: personas_fk | type: CONSTRAINT --
+-- ALTER TABLE muint.informacion DROP CONSTRAINT personas_fk;
+ALTER TABLE muint.informacion ADD CONSTRAINT personas_fk FOREIGN KEY (id_personas)
+REFERENCES muint.personas (id_personas) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
+-- ddl-end --
+
+
+-- object: informacion_fk | type: CONSTRAINT --
+-- ALTER TABLE muint.discapacidades DROP CONSTRAINT informacion_fk;
+ALTER TABLE muint.discapacidades ADD CONSTRAINT informacion_fk FOREIGN KEY (id_personas)
+REFERENCES muint.informacion (id_personas) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+
+-- object: informacion_fk | type: CONSTRAINT --
+-- ALTER TABLE muint.vehiculo DROP CONSTRAINT informacion_fk;
+ALTER TABLE muint.vehiculo ADD CONSTRAINT informacion_fk FOREIGN KEY (id_personas)
+REFERENCES muint.informacion (id_personas) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+
+-- object: informacion_fk | type: CONSTRAINT --
+-- ALTER TABLE muint.aprehension DROP CONSTRAINT informacion_fk;
+ALTER TABLE muint.aprehension ADD CONSTRAINT informacion_fk FOREIGN KEY (id_personas)
+REFERENCES muint.informacion (id_personas) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+
+-- object: informacion_fk | type: CONSTRAINT --
+-- ALTER TABLE muint.robo DROP CONSTRAINT informacion_fk;
+ALTER TABLE muint.robo ADD CONSTRAINT informacion_fk FOREIGN KEY (id_personas)
+REFERENCES muint.informacion (id_personas) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+
+-- object: motor_fk | type: CONSTRAINT --
+-- ALTER TABLE muint.vehiculo DROP CONSTRAINT motor_fk;
+ALTER TABLE muint.vehiculo ADD CONSTRAINT motor_fk FOREIGN KEY (id_motor)
+REFERENCES muint.motor (id_motor) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+
+-- object: colores_fk | type: CONSTRAINT --
+-- ALTER TABLE muint.vehiculo DROP CONSTRAINT colores_fk;
+ALTER TABLE muint.vehiculo ADD CONSTRAINT colores_fk FOREIGN KEY (id_color)
+REFERENCES muint.colores (id_color) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --

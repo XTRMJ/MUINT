@@ -1,4 +1,6 @@
-
+<?php
+#include 'conn.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -171,7 +173,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         </script>
 </head>
 <body class="w3-light-grey">
-
 <!-- Top container -->
 <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
   <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
@@ -280,24 +281,32 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <div class="w3-row-padding w3-blue-grey" style="margin:0 -16px">
       <h5>Incidentes Robo a Comercio (JPCADMI).</h5>
       <h5>Último Incidente Ocurrido: <span class="w3-opacity w3-medium">Miércoles 30 de Noviembre 2022, 22:12:31 Horas</span></h5>
-      <div class="w3-third w3-blue-grey">
-        <h5><span class="w3-opacity w3-medium">29/09/2022 - 21:12:11 Horas.</span></h5>
-        <img src="https://www.elsoldepuebla.com.mx/policiaca/3ck1by-robo-oxxo-01.jpg/ALTERNATES/LANDSCAPE_1140/Robo%20Oxxo%2001.jpg" class="w3-center w3-margin-right" style="width:100%">
-        <h5>Delito 1</h5>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
-      </div>
-      <div class="w3-third w3-blue-grey">
-        <h5><span class="w3-opacity w3-medium">29/09/2022 - 21:12:11 Horas.</span></h5>
-        <img src="https://www.elsoldepuebla.com.mx/policiaca/3ck1by-robo-oxxo-01.jpg/ALTERNATES/LANDSCAPE_1140/Robo%20Oxxo%2001.jpg" class="w3-center w3-margin-right" style="width:100%">
-        <h5>Delito 2</h5>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
-      </div>
-      <div class="w3-third w3-blue-grey">
-        <h5><span class="w3-opacity w3-medium">29/09/2022 - 21:12:11 Horas.</span></h5>
-        <img src="https://www.elsoldepuebla.com.mx/policiaca/3ck1by-robo-oxxo-01.jpg/ALTERNATES/LANDSCAPE_1140/Robo%20Oxxo%2001.jpg" class="w3-center w3-margin-right" style="width:100%">
-        <h5>Delito 3</h5>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
-      </div>
+      
+
+
+
+
+      <?php
+          #TODO:
+          include 'conn.php';
+          $conn = conn();
+          if($conn){
+            for($i=0;$i<3;$i++)
+            echo '<div class="w3-third w3-blue-grey">
+            <h5><span class="w3-opacity w3-medium">29/09/2022 - 21:12:11 Horas.</span></h5>
+            <img src="https://www.elsoldepuebla.com.mx/policiaca/3ck1by-robo-oxxo-01.jpg/ALTERNATES/LANDSCAPE_1140/Robo%20Oxxo%2001.jpg" class="w3-center w3-margin-right" style="width:100%">
+            <h5>Delito 1</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
+            </div>';
+            $query = "SELECT * FROM muint.usuario";
+            $consulta = pg_query($query);
+            if(pg_num_rows($consulta)>0){
+                while($obj = pg_fetch_object($consulta)){
+                    echo $obj->user."<br>";
+                }
+            }
+          }
+        ?>
     </div>
   </div>
   

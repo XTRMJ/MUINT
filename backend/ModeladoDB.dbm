@@ -18,7 +18,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="28" y="48"/>
+	<position x="140" y="160"/>
 	<column name="id_ec">
 		<type name="smallint"/>
 	</column>
@@ -35,7 +35,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="27" y="221"/>
+	<position x="12" y="229"/>
 	<column name="id_escolaridad" not-null="true">
 		<type name="smallint"/>
 	</column>
@@ -51,7 +51,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="26" y="306"/>
+	<position x="28" y="327"/>
 	<column name="id_adicciones">
 		<type name="smallint"/>
 	</column>
@@ -68,7 +68,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="1356.29" y="64.4439"/>
+	<position x="1095.29" y="330.444"/>
 	<column name="id_unidad" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -103,20 +103,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
 	<position x="477.158" y="476.429"/>
-	<column name="id_informacion" not-null="true">
-		<type name="integer"/>
-	</column>
-	<constraint name="id_persona_pk" type="pk-constr" factor="10" table="muint.informacion">
-		<tablespace name="pg_default"/>
-		<columns names="id_informacion" ref-type="src-columns"/>
-	</constraint>
 </table>
 
 <table name="estados">
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="318.5" y="129.829"/>
+	<position x="288.5" y="94.829"/>
 	<column name="id_estado">
 		<type name="integer"/>
 	</column>
@@ -133,7 +126,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="7.75" y="387.75"/>
+	<position x="6.75" y="404.75"/>
 	<column name="id_nacionalidad">
 		<type name="integer"/>
 	</column>
@@ -150,7 +143,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="33" y="137"/>
+	<position x="22" y="471"/>
 	<column name="id_pref_sexual" not-null="true">
 		<type name="smallint"/>
 	</column>
@@ -167,14 +160,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="353.619" y="284.508"/>
-	<column name="municipio" not-null="true">
-		<type name="varchar"/>
-		<comment><![CDATA[Nombre del municipio]]></comment>
-	</column>
+	<position x="370.619" y="274.508"/>
 	<column name="id_municipio" not-null="true">
 		<type name="integer"/>
 		<comment><![CDATA[Identificador del municipio]]></comment>
+	</column>
+	<column name="municipio" not-null="true">
+		<type name="varchar"/>
+		<comment><![CDATA[Nombre del municipio]]></comment>
 	</column>
 	<constraint name="id_municipio_pk" type="pk-constr" factor="10" table="muint.municipios">
 		<tablespace name="pg_default"/>
@@ -196,7 +189,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="2" constr-indexes="1"
+	 col-indexes="1" constr-indexes="0"
 	 src-table="muint.estado_civil"
 	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
@@ -205,7 +198,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="3" constr-indexes="2"
+	 col-indexes="2" constr-indexes="1"
 	 src-table="muint.pref_sexual"
 	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
@@ -214,7 +207,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="4" constr-indexes="3"
+	 col-indexes="3" constr-indexes="2"
 	 src-table="muint.escolaridad"
 	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
@@ -223,7 +216,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="5" constr-indexes="4"
+	 col-indexes="4" constr-indexes="3"
 	 src-table="muint.adicciones"
 	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
@@ -232,7 +225,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="6" constr-indexes="5"
+	 col-indexes="5" constr-indexes="4"
 	 src-table="muint.nacionalidad"
 	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
@@ -241,7 +234,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="7,8" constr-indexes="6"
+	 col-indexes="6,7" constr-indexes="5"
 	 src-table="muint.municipios"
 	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
@@ -250,12 +243,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="492.238" y="197.492"/>
-	<column name="calle">
-		<type name="varchar" length="150"/>
-	</column>
+	<position x="523.238" y="197.492"/>
 	<column name="id_calle">
 		<type name="integer"/>
+	</column>
+	<column name="calle">
+		<type name="varchar" length="150"/>
 	</column>
 	<constraint name="id_calle_pk" type="pk-constr" factor="10" table="muint.calles">
 		<tablespace name="pg_default"/>
@@ -276,7 +269,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="9" constr-indexes="7"
+	 col-indexes="8" constr-indexes="6"
 	 src-table="muint.calles"
 	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false">
@@ -289,18 +282,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="1124.13" y="170"/>
+	<position x="1100.13" y="142"/>
 	<column name="id_motivo">
 		<type name="integer"/>
-	</column>
-	<column name="hora">
-		<type name="time"/>
 	</column>
 	<column name="motivo" not-null="true">
 		<type name="varchar" length="100"/>
 	</column>
 	<column name="fecha">
 		<type name="date"/>
+	</column>
+	<column name="hora">
+		<type name="time"/>
 	</column>
 	<constraint name="id_motivo_pk" type="pk-constr" factor="10" table="muint.motivo">
 		<tablespace name="pg_default"/>
@@ -332,29 +325,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="840.774" y="316.806"/>
+	<position x="824.774" y="307.806"/>
 	<column name="observaciones">
 		<type name="varchar" length="500"/>
 	</column>
 </table>
-
-<relationship name="aprehension_has_one_motivo" type="rel11"
-	 src-col-pattern="{sc}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="1" constr-indexes="0,1"
-	 src-table="muint.motivo"
-	 dst-table="muint.aprehension"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="aprehension_has_one_persona" type="rel11"
-	 src-col-pattern="{sc}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="0" constr-indexes="2,3"
-	 src-table="muint.informacion"
-	 dst-table="muint.aprehension"
-	 src-required="false" dst-required="false"/>
 
 <relationship name="unidad_has_many_motivo" type="rel1n"
 	 src-col-pattern="{sc}"
@@ -365,27 +340,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="muint.motivo"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="aprehension_has_one_geo" type="rel11"
-	 src-col-pattern="{sc}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="2" constr-indexes="4,5"
-	 src-table="muint.geo"
-	 dst-table="muint.aprehension"
-	 src-required="false" dst-required="false"/>
-
 <table name="usuario">
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="703.572" y="30.1786"/>
+	<position x="713.572" y="40.1786"/>
 	<column name="id_usuario" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="password" not-null="true">
+	<column name="user" not-null="true">
 		<type name="varchar" length="50"/>
 	</column>
-	<column name="user" not-null="true">
+	<column name="password" not-null="true">
 		<type name="varchar" length="50"/>
 	</column>
 	<constraint name="id_usuarios_pk" type="pk-constr" factor="10" table="muint.usuario">
@@ -411,20 +377,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<relationship name="usuario_has_one_nivel" type="rel11"
-	 src-col-pattern="{sc}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="1" constr-indexes="1,2"
-	 src-table="muint.nivel"
-	 dst-table="muint.usuario"
-	 src-required="false" dst-required="false"/>
-
 <relationship name="persona_has_one_usuario" type="rel11"
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="10" constr-indexes="8,9"
+	 col-indexes="9" constr-indexes="9,11"
 	 src-table="muint.usuario"
 	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
@@ -450,7 +407,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="472.759" y="709.047"/>
+	<position x="465.759" y="747.047"/>
 	<column name="id_vehiculo" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -467,15 +424,17 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </table>
 
 <table name="motor">
-	<schema name="public"/>
-	<position x="872.367" y="887.143"/>
+	<schema name="muint"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<position x="920.367" y="950.143"/>
 	<column name="id_motor" not-null="true">
 		<type name="integer"/>
 	</column>
 	<column name="motor" not-null="true">
 		<type name="varchar" length="20"/>
 	</column>
-	<constraint name="id_motor_pk" type="pk-constr" factor="10" table="public.motor">
+	<constraint name="id_motor_pk" type="pk-constr" factor="10" table="muint.motor">
 		<tablespace name="pg_default"/>
 		<columns names="id_motor" ref-type="src-columns"/>
 	</constraint>
@@ -485,7 +444,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="1115.3" y="976.986"/>
+	<position x="734.3" y="1069.99"/>
 	<column name="id_modelos_motores" not-null="true">
 		<type name="smallint"/>
 	</column>
@@ -504,32 +463,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-fk-pattern="{st}_fk"
 	 col-indexes="2" constr-indexes="0"
 	 src-table="muint.modelos_motores"
-	 dst-table="public.motor"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="motor_has_many_vehiculo" type="rel1n"
-	 src-col-pattern="{sc}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="3" constr-indexes="1"
-	 src-table="public.motor"
-	 dst-table="muint.vehiculo"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="vehiculo_has_many_colores" type="rel1n"
-	 src-col-pattern="{sc}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="2" constr-indexes="1"
-	 src-table="muint.vehiculo"
-	 dst-table="muint.colores"
+	 dst-table="muint.motor"
 	 src-required="false" dst-required="false"/>
 
 <table name="tipo_vehiculo">
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="781.967" y="985.715"/>
+	<position x="573.967" y="945.715"/>
 	<column name="id_tipo_vehiculo" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -546,7 +487,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="460.066" y="906.985"/>
+	<position x="341.066" y="1037.98"/>
 	<column name="id_marca_vehiculo" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -563,7 +504,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="455.78" y="1048.88"/>
+	<position x="423.78" y="1155.88"/>
 	<column name="id_sub_marca_vehiculo" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -589,7 +530,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="4" constr-indexes="2"
+	 col-indexes="3" constr-indexes="1"
 	 src-table="muint.marca_vehiculo"
 	 dst-table="muint.vehiculo"
 	 src-required="false" dst-required="false"/>
@@ -598,7 +539,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="19.4285" y="1083.71"/>
+	<position x="13.4285" y="1013.71"/>
 	<column name="id_arma" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -634,7 +575,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="1207.14" y="309.821"/>
+	<position x="1199.14" y="437.821"/>
 	<column name="id_lado" not-null="true">
 		<type name="smallint"/>
 	</column>
@@ -652,7 +593,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
 	<comment><![CDATA[Catalogo de las partes del cuerpo ej. brazo, pierna, pecho, torso, etc]]></comment>
-	<position x="1233.93" y="444.822"/>
+	<position x="1171.93" y="587.822"/>
 	<column name="id_cuerpo" not-null="true">
 		<type name="smallint"/>
 	</column>
@@ -665,29 +606,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<relationship name="tatuajes_has_one_cuerpo" type="rel11"
-	 src-col-pattern="{sc}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="2" constr-indexes="1,2"
-	 src-table="muint.cuerpo"
-	 dst-table="muint.tatuajes"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="tatuajes_has_one_lado" type="rel11"
-	 src-col-pattern="{sc}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="3" constr-indexes="3,4"
-	 src-table="muint.lado"
-	 dst-table="muint.tatuajes"
-	 src-required="false" dst-required="false"/>
-
 <table name="oxxo">
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="140" y="685.715"/>
+	<position x="202" y="920.715"/>
 	<column name="id_oxxo" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -699,9 +622,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer"/>
 		<comment><![CDATA[cantidad de veces que fue asaltado el establecimiento]]></comment>
 	</column>
-	<column name="fecha">
-		<type name="timestamp"/>
-	</column>
 	<constraint name="id_oxxo_pk" type="pk-constr" factor="10" table="muint.oxxo">
 		<columns names="id_oxxo" ref-type="src-columns"/>
 	</constraint>
@@ -712,7 +632,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
 	<comment><![CDATA[propiedad del detenido]]></comment>
-	<position x="155.714" y="971.429"/>
+	<position x="9" y="844.429"/>
 	<column name="id_registro" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -744,12 +664,15 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="57.1429" y="841.431"/>
+	<position x="90.1429" y="644.431"/>
 	<column name="id_robo" not-null="true">
 		<type name="integer"/>
 	</column>
 	<column name="caracteristicas" not-null="true">
 		<type name="varchar" length="100"/>
+	</column>
+	<column name="fecha">
+		<type name="timestamp"/>
 	</column>
 	<constraint name="id_robo_pk" type="pk-constr" factor="10" table="muint.robo">
 		<columns names="id_robo" ref-type="src-columns"/>
@@ -760,7 +683,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="11" constr-indexes="10,11"
+	 col-indexes="10" constr-indexes="7,8"
 	 src-table="muint.tatuajes"
 	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
@@ -769,45 +692,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="5" constr-indexes="3"
+	 col-indexes="4" constr-indexes="2"
 	 src-table="muint.tipo_vehiculo"
 	 dst-table="muint.vehiculo"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="persona_has_many_discapacidades" type="rel1n"
-	 src-col-pattern="{sc}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="2" constr-indexes="1"
-	 src-table="muint.informacion"
-	 dst-table="muint.discapacidades"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="persona_has_many_oxxo" type="rel1n"
-	 src-col-pattern="{sc}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="4" constr-indexes="1"
-	 src-table="muint.informacion"
-	 dst-table="muint.oxxo"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="oxxo_has_many_robo" type="rel1n"
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="2" constr-indexes="1"
+	 col-indexes="3" constr-indexes="1"
 	 src-table="muint.oxxo"
 	 dst-table="muint.robo"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="persona_has_many_vehiculo" type="rel1n"
-	 src-col-pattern="{sc}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="6" constr-indexes="4"
-	 src-table="muint.informacion"
-	 dst-table="muint.vehiculo"
 	 src-required="false" dst-required="false"/>
 
 <table name="personas">
@@ -853,16 +749,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<relationship name="personas_has_many_persona" type="rel1n"
-	 src-col-pattern="{sc}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="1" constr-indexes="12"
-	 src-table="muint.personas"
-	 dst-table="muint.informacion"
-	 src-required="true" dst-required="false"	 identifier="true"
-/>
-
 <relationship name="arma_has_many_registro_detenciones" type="rel1n"
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
@@ -876,7 +762,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="3" constr-indexes="2"
+	 col-indexes="4" constr-indexes="2"
 	 src-table="muint.registro_detenciones"
 	 dst-table="muint.robo"
 	 src-required="false" dst-required="false"/>
@@ -902,9 +788,118 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="12" constr-indexes="13"
+	 col-indexes="11" constr-indexes="10"
 	 src-table="muint.fotos"
 	 dst-table="muint.informacion"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="nivel_has_many_usuario" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="1" constr-indexes="1"
+	 src-table="muint.nivel"
+	 dst-table="muint.usuario"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="cuerpo_has_many_tatuajes" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2" constr-indexes="1"
+	 src-table="muint.cuerpo"
+	 dst-table="muint.tatuajes"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="lado_has_many_tatuajes" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="3" constr-indexes="2"
+	 src-table="muint.lado"
+	 dst-table="muint.tatuajes"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="geo_has_many_aprehension" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="1" constr-indexes="0"
+	 src-table="muint.geo"
+	 dst-table="muint.aprehension"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="motivo_has_many_aprehension" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2" constr-indexes="1"
+	 src-table="muint.motivo"
+	 dst-table="muint.aprehension"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="informacion_has_one_personas" type="rel11"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="0" constr-indexes="12,13"
+	 src-table="muint.personas"
+	 dst-table="muint.informacion"
+	 src-required="true" dst-required="false"	 identifier="true"
+/>
+
+<relationship name="informacion_has_many_discapacidades" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2" constr-indexes="1"
+	 src-table="muint.informacion"
+	 dst-table="muint.discapacidades"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="informacion_has_many_vehiculo" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="5" constr-indexes="3"
+	 src-table="muint.informacion"
+	 dst-table="muint.vehiculo"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="informacion_has_many_aprehension" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="3" constr-indexes="2"
+	 src-table="muint.informacion"
+	 dst-table="muint.aprehension"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="informacion_has_many_robo" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="5" constr-indexes="3"
+	 src-table="muint.informacion"
+	 dst-table="muint.robo"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="motor_has_many_vehiculo" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="6" constr-indexes="4"
+	 src-table="muint.motor"
+	 dst-table="muint.vehiculo"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="colores_has_many_vehiculo" type="rel1n"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="7" constr-indexes="5"
+	 src-table="muint.colores"
+	 dst-table="muint.vehiculo"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>
