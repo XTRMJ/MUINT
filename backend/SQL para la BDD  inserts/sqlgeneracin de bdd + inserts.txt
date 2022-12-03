@@ -40,7 +40,7 @@ values (1,'Mexicano'),
 		(4,'Argetino'),
 		(5,'Costa risence');
 
---------------------------discapacidades----------------------
+--------------------------estados----------------------
 INSERT INTO muint.estados(id_estado,estado)
 values (1,'San Luis Potosi'),
 		(2,'Monterrey'),
@@ -77,6 +77,19 @@ values (1,'administrador'),
 		(2,'oficial'),
 		(3,'registrador');
 
+--------------------oxxo--------------------------------------------
+INSERT INTO muint.oxxo(id_oxxo,oxxo,total_robos)
+values (1,'Juaquin Cerdan',2),
+	(2,'Boulevar',8),
+	(3,'Boulevar 2',1);
+
+---------------------------colores---------------------------------
+INSERT INTO muint.colores(id_color,color)
+values (1,'Negro'),
+		(2,'Amarillo'),
+		(3,'Rojo');
+
+
 ----------------------usuario-----------------------------------
 INSERT INTO muint.usuario(id_usuario,id_nivel,"password","user")
 values (1,1,'456asx65*','Jan Hernandez'),
@@ -110,12 +123,6 @@ values (1,'Juan','Gimenes','Gomes','1990-01-29',85.2,'NULL','M',74147,130,2),
 		(2,'Griselda','Gimenes','Gomes','1999-01-29',65.2,'NULL','F',74147,130,2),
 		(3,'Estevan','Gimenes','Gomes','1989-01-29',85.2,'gerente de abarrotes','M',74147,45,6);
 
---------------------aprehension--------------------------------------
-INSERT INTO muint.aprehension(id_informacion,id_motivo,id_geo,observaciones,id_personas)
-values (1,1,1,'mostrava varias eridas cerca del cuello',1),
-		(2,2,2,'el sujeto se aferraba auna bolsa vacia le llamava tesoro',2),
-		(3,3,3,'parecia aver consumido estupefacientes previamente',3);
-
 ----------------------lado--------------------------------------------
 INSERT INTO muint.lado(id_lado,lado)
 values (1,'costado'),
@@ -140,23 +147,17 @@ values (1,8),
 		(2,6),
 		(3,7);
 
----------------------discapacidades----------------------------------
+---------------------armas----------------------------------
 INSERT INTO muint.arma(id_arma,tipo_arma)
 values (1,true),
-		(2,true),
-		(3,false);
+		(2,false);
+
 ---------------------registro_detenciones----------------------------
 INSERT INTO muint.registro_detenciones(id_registro,registro_propiedad,id_arma)
 values (1,'200 pesos, 45 gr de coca',1),
 		(2,'1 mochila',2),
-		(3,'4 celulares',3);
+		(3,'4 celulares',2);
 
-
----------------------robo-------------------------------------------
-INSERT INTO muint.robo(id_robo,caracteristicas,id_oxxo,id_registro)
-values (1,'tomo un reen',1,1),
-		(2,'NULL',2,2),
-		(3,'NULL',2,2);
 
 -------------------modelos_motores----------------------------------
 INSERT INTO muint.modelos_motores(id_modelos_motores,modelos_motores)
@@ -165,7 +166,7 @@ values (1,'G45C'),
 		(3,'2DF77A');
 
 ----------------------motores--------------------------------------
-INSERT INTO muint.motor(id_motor,moto,id_modelos_motores)
+INSERT INTO muint.motor(id_motor,motor,id_modelos_motores)
 values (1,'Mustang',1),
 		(2,'Wankel',3),
 		(3,'Monocilindrico',2);
@@ -176,7 +177,7 @@ values (1,'Camioneta'),
 		(2,'Motocicleta'),
 		(3,'Automovil');
 ----------------------sub_marca_vehiculo---------------------------
-INSERT INTO muint.sub_marca_vehiculo(id_sub_marca_vehiculo,sub_marca,vehiculo)
+INSERT INTO muint.sub_marca_vehiculo(id_sub_marca_vehiculo,sub_marca_vehiculo)
 values (1,'Land rover'),
 		(2,'KIA'),
 		(3,'DACIA');
@@ -186,25 +187,30 @@ values (1,'Chevrolet',1),
 		(2,'NISAN',2),
 		(3,'Ferrari',3);
 ------------------------informacion--------------------------------
-INSERT INTO muint.informacion(id_informacion,id_personas,id_ec,id_pref_sexual,id_escolaridad,id_adicciones,id_nacionalidad,id_municipio,id_estado,id_calle,id_usuario,id_tatuaje,id_foto)
-values (1,1,1,1,1,1,1,1,1,1,1,1,1),
-		(2,2,2,2,2,2,2,2,2,2,2,2,2),
-		(3,3,3,3,3,3,3,3,3,3,3,3,3);
+INSERT INTO muint.informacion(id_personas,id_ec,id_pref_sexual,id_escolaridad,id_adicciones,id_nacionalidad,id_municipio,id_calle,id_usuario,id_tatuaje,id_foto)
+values (1,1,1,1,1,1,1,1,1,1,1),
+		(2,2,2,2,2,2,2,2,2,2,2),
+		(3,3,3,3,3,3,3,3,3,3,3);
+
+-----------------------discapacidades----------------------------
+INSERT INTO muint.discapacidades VALUES
+					(1,'Ciego',1),
+					(2,'Invalido',2);
+
+--------------------aprehension--------------------------------------
+INSERT INTO muint.aprehension(id_personas,id_motivo,id_geo,observaciones)
+values (1,1,1,'mostrava varias eridas cerca del cuello'),
+		(2,2,2,'el sujeto se aferraba auna bolsa vacia le llamava tesoro'),
+		(3,3,3,'parecia aver consumido estupefacientes previamente');
 
 ------------------------vehiculo-------------------------------------
-INSERT INTO munit.vehiculo(id_vehiculo,serie,placas,id_motor,id_marca_vehiculo,id_tipo_vehiculo,id_informacion,id_personas)
+INSERT INTO muint.vehiculo(id_vehiculo,serie,placas,id_motor,id_marca_vehiculo,id_tipo_vehiculo,id_personas,id_color)
 values (1,'AAAAAAABD','L4M3CUL05',1,1,1,1,1),
 	(2,'CCAAAAABD','T3T45P3T3R',2,2,2,2,2),
 	(3,'SSAFFAABD','L4M3E5032',3,3,3,3,3);
 
----------------------------colores---------------------------------
-INSERT INTO muint.colores(id_color,color,id_vehiculo)
-values (1,'Negro',1),
-		(2,'Amarillo',1),
-		(3,'Rojo',2);
-
---------------------oxxo--------------------------------------------
-INSERT INTO muint.oxxo(id_oxxo,oxxo,total_robos,fecha,id_informacion,id_personas)
-values (1,'Juaquin Cerdan',2,'2022-05-05',1,1),
-	(2,'Boulevar',8,'2022-10-05',2,1),
-	(3,'Boulevar 2',1,'2022-09-03',3,2);
+---------------------robo-------------------------------------------
+INSERT INTO muint.robo(id_robo,caracteristicas,fecha,id_oxxo,id_registro,id_personas)
+values (1,'tomo un reen','2012-12-12 10:10:10',1,1,1),
+		(2,'NULL','2012-12-12 10:10:10',2,2,1),
+		(3,'NULL','2012-12-12 10:10:10',2,2,1);

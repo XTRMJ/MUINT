@@ -102,7 +102,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="477.158" y="476.429"/>
+	<position x="496.158" y="465.429"/>
 </table>
 
 <table name="estados">
@@ -161,13 +161,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
 	<position x="370.619" y="274.508"/>
-	<column name="id_municipio" not-null="true">
-		<type name="integer"/>
-		<comment><![CDATA[Identificador del municipio]]></comment>
-	</column>
 	<column name="municipio" not-null="true">
 		<type name="varchar"/>
 		<comment><![CDATA[Nombre del municipio]]></comment>
+	</column>
+	<column name="id_municipio" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[Identificador del municipio]]></comment>
 	</column>
 	<constraint name="id_municipio_pk" type="pk-constr" factor="10" table="muint.municipios">
 		<tablespace name="pg_default"/>
@@ -182,8 +182,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 col-indexes="0" constr-indexes="1"
 	 src-table="muint.estados"
 	 dst-table="muint.municipios"
-	 src-required="true" dst-required="false"	 identifier="true"
-/>
+	 src-required="true" dst-required="false"/>
 
 <relationship name="estado_civil_has_many_persona" type="rel1n"
 	 src-col-pattern="{sc}"
@@ -234,7 +233,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="6,7" constr-indexes="5"
+	 col-indexes="6" constr-indexes="5"
 	 src-table="muint.municipios"
 	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
@@ -244,11 +243,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
 	<position x="523.238" y="197.492"/>
-	<column name="id_calle">
-		<type name="integer"/>
-	</column>
 	<column name="calle">
 		<type name="varchar" length="150"/>
+	</column>
+	<column name="id_calle">
+		<type name="integer"/>
 	</column>
 	<constraint name="id_calle_pk" type="pk-constr" factor="10" table="muint.calles">
 		<tablespace name="pg_default"/>
@@ -269,7 +268,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="8" constr-indexes="6"
+	 col-indexes="7" constr-indexes="6"
 	 src-table="muint.calles"
 	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false">
@@ -286,14 +285,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="id_motivo">
 		<type name="integer"/>
 	</column>
-	<column name="motivo" not-null="true">
-		<type name="varchar" length="100"/>
-	</column>
 	<column name="fecha">
 		<type name="date"/>
 	</column>
 	<column name="hora">
 		<type name="time"/>
+	</column>
+	<column name="motivo" not-null="true">
+		<type name="varchar" length="100"/>
 	</column>
 	<constraint name="id_motivo_pk" type="pk-constr" factor="10" table="muint.motivo">
 		<tablespace name="pg_default"/>
@@ -348,10 +347,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="id_usuario" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="user" not-null="true">
+	<column name="password" not-null="true">
 		<type name="varchar" length="50"/>
 	</column>
-	<column name="password" not-null="true">
+	<column name="user" not-null="true">
 		<type name="varchar" length="50"/>
 	</column>
 	<constraint name="id_usuarios_pk" type="pk-constr" factor="10" table="muint.usuario">
@@ -381,7 +380,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="9" constr-indexes="9,11"
+	 col-indexes="8" constr-indexes="9,11"
 	 src-table="muint.usuario"
 	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
@@ -557,7 +556,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="muint"/>
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<position x="855.357" y="430.536"/>
+	<position x="857.357" y="430.536"/>
 	<column name="id_tatuaje" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -683,7 +682,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="10" constr-indexes="7,8"
+	 col-indexes="9" constr-indexes="7,8"
 	 src-table="muint.tatuajes"
 	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
@@ -788,7 +787,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="11" constr-indexes="10"
+	 col-indexes="10" constr-indexes="10"
 	 src-table="muint.fotos"
 	 dst-table="muint.informacion"
 	 src-required="false" dst-required="false"/>
@@ -824,7 +823,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="1" constr-indexes="0"
+	 col-indexes="2" constr-indexes="0"
 	 src-table="muint.geo"
 	 dst-table="muint.aprehension"
 	 src-required="false" dst-required="false"/>
@@ -833,7 +832,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="2" constr-indexes="1"
+	 col-indexes="1" constr-indexes="1"
 	 src-table="muint.motivo"
 	 dst-table="muint.aprehension"
 	 src-required="false" dst-required="false"/>
@@ -870,7 +869,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="3" constr-indexes="2"
+	 col-indexes="0" constr-indexes="2"
 	 src-table="muint.informacion"
 	 dst-table="muint.aprehension"
 	 src-required="false" dst-required="false"/>

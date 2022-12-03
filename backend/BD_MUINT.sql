@@ -109,7 +109,6 @@ CREATE TABLE muint.informacion(
 	id_adicciones smallint,
 	id_nacionalidad integer,
 	id_municipio integer,
-	id_estado integer,
 	id_calle integer,
 	id_usuario integer,
 	id_tatuaje integer,
@@ -171,18 +170,18 @@ ALTER TABLE muint.pref_sexual OWNER TO postgres;
 -- object: muint.municipios | type: TABLE --
 -- DROP TABLE muint.municipios;
 CREATE TABLE muint.municipios(
-	id_estado integer,
-	id_municipio integer NOT NULL,
+	id_estado integer NOT NULL,
 	municipio varchar NOT NULL,
-	CONSTRAINT id_municipio_pk PRIMARY KEY (id_municipio,id_estado)
+	id_municipio integer NOT NULL,
+	CONSTRAINT id_municipio_pk PRIMARY KEY (id_municipio)
 	WITH (FILLFACTOR = 10)
 	USING INDEX TABLESPACE pg_default
 
 )
 TABLESPACE pg_default;
 -- ddl-end --
-COMMENT ON COLUMN muint.municipios.id_municipio IS 'Identificador del municipio';
 COMMENT ON COLUMN muint.municipios.municipio IS 'Nombre del municipio';
+COMMENT ON COLUMN muint.municipios.id_municipio IS 'Identificador del municipio';
 ALTER TABLE muint.municipios OWNER TO postgres;
 -- ddl-end --
 
@@ -190,7 +189,7 @@ ALTER TABLE muint.municipios OWNER TO postgres;
 -- ALTER TABLE muint.municipios DROP CONSTRAINT estados_fk;
 ALTER TABLE muint.municipios ADD CONSTRAINT estados_fk FOREIGN KEY (id_estado)
 REFERENCES muint.estados (id_estado) MATCH FULL
-ON DELETE CASCADE ON UPDATE CASCADE;
+ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
 
 
@@ -236,8 +235,8 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- object: municipios_fk | type: CONSTRAINT --
 -- ALTER TABLE muint.informacion DROP CONSTRAINT municipios_fk;
-ALTER TABLE muint.informacion ADD CONSTRAINT municipios_fk FOREIGN KEY (id_municipio,id_estado)
-REFERENCES muint.municipios (id_municipio,id_estado) MATCH FULL
+ALTER TABLE muint.informacion ADD CONSTRAINT municipios_fk FOREIGN KEY (id_municipio)
+REFERENCES muint.municipios (id_municipio) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
@@ -246,8 +245,8 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 -- DROP TABLE muint.calles;
 CREATE TABLE muint.calles(
 	id_sector smallint,
-	id_calle integer,
 	calle varchar(150),
+	id_calle integer,
 	CONSTRAINT id_calle_pk PRIMARY KEY (id_calle)
 	WITH (FILLFACTOR = 10)
 	USING INDEX TABLESPACE pg_default
@@ -279,9 +278,9 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 CREATE TABLE muint.motivo(
 	id_motivo integer,
 	id_unidad integer,
-	motivo varchar(100) NOT NULL,
 	fecha date,
 	hora time,
+	motivo varchar(100) NOT NULL,
 	CONSTRAINT id_motivo_pk PRIMARY KEY (id_motivo)
 	WITH (FILLFACTOR = 10)
 	USING INDEX TABLESPACE pg_default
@@ -311,10 +310,10 @@ ALTER TABLE muint.geo OWNER TO postgres;
 -- object: muint.aprehension | type: TABLE --
 -- DROP TABLE muint.aprehension;
 CREATE TABLE muint.aprehension(
-	observaciones varchar(500),
-	id_geo integer,
+	id_personas integer,
 	id_motivo integer,
-	id_personas integer
+	id_geo integer,
+	observaciones varchar(500)
 )
 TABLESPACE pg_default;
 -- ddl-end --
@@ -334,8 +333,8 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 CREATE TABLE muint.usuario(
 	id_usuario integer NOT NULL,
 	id_nivel smallint,
-	"user" varchar(50) NOT NULL,
 	"password" varchar(50) NOT NULL,
+	"user" varchar(50) NOT NULL,
 	CONSTRAINT id_usuarios_pk PRIMARY KEY (id_usuario)
 	WITH (FILLFACTOR = 10)
 	USING INDEX TABLESPACE pg_default
