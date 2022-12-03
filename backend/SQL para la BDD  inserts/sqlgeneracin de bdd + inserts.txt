@@ -198,10 +198,10 @@ INSERT INTO muint.discapacidades VALUES
 					(2,'Invalido',2);
 
 --------------------aprehension--------------------------------------
-INSERT INTO muint.aprehension(id_personas,id_motivo,id_geo,observaciones)
-values (1,1,1,'mostrava varias eridas cerca del cuello'),
-		(2,2,2,'el sujeto se aferraba auna bolsa vacia le llamava tesoro'),
-		(3,3,3,'parecia aver consumido estupefacientes previamente');
+INSERT INTO muint.aprehension(id_aprehension,id_personas,id_motivo,id_geo,observaciones)
+values (1,1,1,1,'mostrava varias eridas cerca del cuello'),
+		(2,2,2,2,'el sujeto se aferraba auna bolsa vacia le llamava tesoro'),
+		(3,3,3,3,'parecia aver consumido estupefacientes previamente');
 
 ------------------------vehiculo-------------------------------------
 INSERT INTO muint.vehiculo(id_vehiculo,serie,placas,id_motor,id_marca_vehiculo,id_tipo_vehiculo,id_personas,id_color)

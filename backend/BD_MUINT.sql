@@ -310,10 +310,15 @@ ALTER TABLE muint.geo OWNER TO postgres;
 -- object: muint.aprehension | type: TABLE --
 -- DROP TABLE muint.aprehension;
 CREATE TABLE muint.aprehension(
+	id_aprehension integer NOT NULL,
 	id_personas integer,
 	id_motivo integer,
 	id_geo integer,
-	observaciones varchar(500)
+	observaciones varchar(500),
+	CONSTRAINT id_aprehension_pk PRIMARY KEY (id_aprehension)
+	WITH (FILLFACTOR = 10)
+	USING INDEX TABLESPACE pg_default
+
 )
 TABLESPACE pg_default;
 -- ddl-end --
