@@ -30,8 +30,8 @@ $ind=0;
 while ($row = @mysqli_fetch_assoc($result)){
 //obtencion de marcadores con los datos de la base de dato para ser insertados en el mapa
   echo '<marker ';
-  echo 'idmapa="' . $row['id_establecimiento'] . '" ';
-  echo 'ubicacion="' . $row['ubicacion'] . '" ';
+  echo 'idmapa="' . $row['id'] . '" ';
+  //echo 'ubicacion="' . $row['ubicacion'] . '" ';
   echo 'lat="' . $row['latitud'] . '" ';
   echo 'lng="' . $row['longitud'] . '" ';
   echo '/>';
