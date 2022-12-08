@@ -184,7 +184,7 @@
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
   <div class="w3-container w3-row">
     <div class="w3-col s4">
-      <img src="avatar.png" class="w3-circle w3-margin-right" style="width:68px; height: 68px;">
+      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="w3-circle w3-margin-right" style="width:68px; height: 68px;">
     </div>
     <div class="w3-col s5 w3-bar">
       <span>Bienvenido, <strong>Mike</strong></span><br>
@@ -196,8 +196,8 @@
   </div>
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Subdirección de investigación y análisis</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Jefatura de análisis y explotación de la información ciudadana - datos de la barandilla</a>
+    <a href="plantilla.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Subdirección de investigación y análisis</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-eye fa-fw"></i>  Jefatura de análisis y explotación de la información ciudadana - datos de la barandilla</a>
     <a href="Mapa.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Jefatura de política criminológica para la atención de delitos de mayor incidencia - datos de incidentes</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Subdirección de investigación y análisis</a>
     <br><br>
@@ -213,44 +213,32 @@
 <!-- Carrusel Barandilla -->
 <div class="slideshow-container w3-row-padding w3-margin-bottom">
   <h5>Mas notorios</h5>
-  <div class="mySlides fade">
-    <div>
-      <div class="w3-container w3-black w3-padding-16">
-        <div class="w3-twothird">
-          <img src="images/mugshot1.jpg" alt="mugshot1.jpg" width="80%">
-        </div>
-        <div class="w3-third">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet porta felis. Curabitur vehicula erat id euismod vulputate. Aliquam pharetra lacinia nibh sed venenatis. Proin aliquam neque eget odio tempus fermentum. Donec at lectus id nibh ultricies ullamcorper eget sit amet libero. Quisque eget massa ex. Etiam malesuada imperdiet venenatis. Duis convallis condimentum massa ut condimentum. Vivamus ac dictum ex.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="mySlides fade">
-    <div>
-      <div class="w3-container w3-black w3-padding-16">
-        <div class="w3-twothird">
-          <img src="images/mugshot2.jpeg" alt="mugshot2.jpeg" width="80%">
-        </div>
-        <div class="w3-third">
-          <p>Quisque et nunc dignissim, ultrices eros vitae, posuere risus. Etiam non nibh sed quam eleifend interdum vitae sed felis. Aenean consectetur tincidunt venenatis. Suspendisse mi odio, auctor eget commodo ullamcorper, elementum vitae orci. Ut pretium leo sed ligula faucibus, congue volutpat velit fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi aliquet vulputate tellus, sodales semper libero bibendum a.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="mySlides fade">
-    <div>
-      <div class="w3-container w3-black w3-padding-16">
-        <div class="w3-twothird">
-          <img src="images/mugshot3.jpg" alt="mugshot3.jpg" width="80%">
-        </div>
-        <div class="w3-third">
-          <p>Sed quis tortor vitae ligula congue lacinia. Nam consequat pellentesque hendrerit. Aenean sit amet nunc eu magna ornare accumsan. Nulla placerat, metus iaculis semper luctus, felis justo tempus magna, vel ullamcorper nulla erat at nisi. Sed ut dolor nec augue accumsan tincidunt et a ante. Sed tristique, ex vel interdum eleifend, nisl ligula vestibulum quam, sed dapibus sem massa at felis. Sed vitae mauris elit. Maecenas aliquet lacinia pellentesque. Cras dictum felis in nisl ultrices fringilla. Donec nec commodo est, vitae congue sem. Praesent vel felis nec nisi mollis semper vehicula sit amet arcu. Vivamus efficitur turpis eget quam elementum ultricies. Praesent a aliquet massa, non gravida augue.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <?php
+    include 'conn.php';
+    $conn = conn();
+    if($conn){
+      $query = "SELECT * FROM muint.vista_rapida_oxxo ORDER BY 1 DESC LIMIT 1";
+      $consulta = pg_query($query);
+      if(pg_num_rows($consulta)>0){
+          while($obj = pg_fetch_object($consulta)){
+            echo '<div class="mySlides fade">
+                <div>
+                  <div class="w3-container w3-black w3-padding-16">
+                    <div class="w3-twothird">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/XC2V1522_FACHADA_OXXO_CERCA_andatti.jpg" alt="mugshot1.jpg" width="80%">
+                    </div>
+                    <div class="w3-third">
+                      <p>En el presente oxxo ('.$obj->oxxo.') se delivero un robo por parte de '.$obj->nombre.'<br>
+                      <p>Fecha: '.$obj->fecha.'</p><br>
+                      <u>Más detalles</u></p>
+                    </div>
+                  </div>
+                </div>
+              </div>';
+          }
+      }
+    }
+  ?>
 
   <a class="prev" onclick="plusSlides(-1)">❮</a>
   <a class="next" onclick="plusSlides(1)">❯</a>
@@ -261,26 +249,24 @@
     <div class="w3-row-padding w3-blue-grey" style="margin:0 -16px">
       <h5>Mas recientes</h5>
 
-      <div class="w3-third w3-blue-grey">
-        <h5><span class="w3-opacity w3-medium"> - Frank Sinatra</span></h5>
-        <img src="images/mugshot3.jpg" class="w3-center w3-margin-right" style="width:100%">
-        <br>
-        <p>Ut interdum tempor massa. Vestibulum non velit nec mauris mollis viverra. Nulla mattis vitae dui id auctor. Nam laoreet, sem sit amet ultricies rutrum, augue erat finibus diam, nec consequat orci sem vel lectus. Aenean laoreet nisi a tempus vulputate. Proin commodo dictum ex, scelerisque consectetur magna consequat ac. Quisque porttitor mauris ipsum, vitae rutrum dolor ultrices eget. Suspendisse laoreet, libero eu ultricies finibus, leo felis ultrices dui, id facilisis nunc turpis sed lectus. Curabitur pretium ac diam et fringilla. Donec nec elit ac nulla laoreet rutrum vel ac odio. Aenean non enim risus.</p>
-      </div>
-
-      <div class="w3-third w3-blue-grey">
-        <h5><span class="w3-opacity w3-medium"> - Jhon Doe</span></h5>
-        <img src="images/mugshot1.jpg" class="w3-center w3-margin-right" style="width:100%">
-        <br>
-        <p>Sed euismod sagittis magna, nec tempus sem fermentum ac. Integer massa sem, posuere eget velit sodales, ultricies sodales leo. Nunc tincidunt sem eu elit ultricies scelerisque. Aliquam non felis est. Donec id ligula quis turpis tincidunt ultrices. Nunc orci augue, mollis id molestie a, semper vel neque. Nam vestibulum sem orci, sed laoreet massa dignissim id. Praesent massa dolor, hendrerit a purus nec, aliquet ornare ipsum.</p>
-      </div>
-
-      <div class="w3-third w3-blue-grey">
-        <h5><span class="w3-opacity w3-medium"> - Patricia Campbell</span></h5>
-        <img src="images/mugshot2.jpeg" class="w3-center w3-margin-right" style="width:100%">
-        <br>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet porta felis. Curabitur vehicula erat id euismod vulputate. Aliquam pharetra lacinia nibh sed venenatis. Proin aliquam neque eget odio tempus fermentum. Donec at lectus id nibh ultricies ullamcorper eget sit amet libero. Quisque eget massa ex. Etiam malesuada imperdiet venenatis. Duis convallis condimentum massa ut condimentum. Vivamus ac dictum ex.</p>
-      </div>
+      <?php
+          if($conn){
+            $query = "SELECT * FROM muint.vista_rapida ORDER BY 1 DESC LIMIT 3";
+            $consulta = pg_query($query);
+            if(pg_num_rows($consulta)>0){
+                while($obj = pg_fetch_object($consulta)){
+                    echo '<div class="w3-third w3-blue-grey">
+                    <h5><span class="w3-opacity w3-medium">Fecha: '.$obj->fecha.'.</span></h5>
+                    <img src="https://www.elsoldepuebla.com.mx/policiaca/3ck1by-robo-oxxo-01.jpg/ALTERNATES/LANDSCAPE_1140/Robo%20Oxxo%2001.jpg" class="w3-center w3-margin-right" style="width:100%">
+                    <h5>Delito 1</h5>
+                    <p>Aprehendido: '.$obj->nombre.'</p><br>
+                    <p>Motivo: '.$obj->motivo.'</p><br>
+                    <p>Unidad a cargo: '.$obj->unidad.'</p><br>
+                    </div>';;
+                }
+            }
+          }
+        ?>
     </div>
   </div>
     <br>
